@@ -16,7 +16,7 @@ const Header = () => {
           </div>
 
           <button
-            className="lg:hidden block"
+            className="lg:hidden block text-white"
             onClick={() => setismobilemenuopen(!ismobilemenuopen)}
           >
             <svg
@@ -39,17 +39,17 @@ const Header = () => {
             </svg>
           </button>
           <ul
-            className={`flex-col justify-center w-[70vw] lg:flex-row lg:flex lg:gap-8 gap-4 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto bg-red-500 z-20 lg:bg-transparent lg:top-auto lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
+            className={`flex-col justify-center w-[70vw] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto bg-[#333] lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
               ismobilemenuopen
                 ? "translate-x-5"
                 : "-translate-x-full lg:translate-x-0"
             }`}
           >
-            <li className="hover:text-gray-300 cursor-pointer">home</li>
-            <li className="hover:text-gray-300 cursor-pointer">about</li>
-            <li className="hover:text-gray-300 cursor-pointer">service</li>
-            <li className="hover:text-gray-300 cursor-pointer">pricing</li>
-            <li className="hover:text-gray-300 cursor-pointer">features</li>
+            <li className="hover:text-[#ffb74d] cursor-pointer">Home</li>
+            <li className="hover:text-[#ffb74d] cursor-pointer">About</li>
+            <li className="hover:text-[#ffb74d] cursor-pointer">Service</li>
+            <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
+            <li className="hover:text-[#ffb74d] cursor-pointer">Features</li>
           </ul>
           <div className="booking">
             <button className="bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] text-white p-3 px-4 rounded-full cursor-pointer">

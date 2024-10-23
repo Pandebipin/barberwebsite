@@ -15,3 +15,8 @@
   font-weight: 600;
   font-style: normal;
 }
+@media (max-width: 360px) {
+  .menu {
+    margin-top: 4rem;
+  }
+}

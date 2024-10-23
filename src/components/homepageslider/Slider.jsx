@@ -4,16 +4,16 @@ function Slider() {
   return (
     <>
       <div className="w-full bg-[#18182C]">
-        <div className="flex justify-center items-center w-full gap-4 h-[12vw] lg:h-[10vw] py-2">
-          <h1 className="text-white lg:text-3xl font-semibold flex items-center px-2 lg:px-5">
+        <div className="flex justify-center items-center w-full gap-1 lg:gap-4 h-[12vw] lg:h-[10vw] py-2">
+          <h1 className="text-white text-[13px] lg:text-3xl font-semibold flex items-center px-2 lg:px-5">
             Hair salon
           </h1>
           <span className="relative inline-block w-8 h-8 star-gradient"></span>
-          <h1 className="text-white lg:text-3xl font-semibold flex items-center text-sm px-1 lg:px-5">
+          <h1 className="text-white text-[13px] lg:text-3xl font-semibold flex items-center text-sm px-1 lg:px-5">
             Barber salon
           </h1>
           <span className="relative inline-block w-8 h-8 star-gradient"></span>
-          <h1 className="text-white lg:text-3xl font-semibold flex items-center text-sm px-1 lg:px-5">
+          <h1 className="text-white text-[13px] lg:text-3xl font-semibold flex items-center text-sm px-1 lg:px-5">
             Hair salon
           </h1>
           {/* <span className="relative inline-block w-8 h-8 star-gradient"></span>

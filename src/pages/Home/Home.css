@@ -3,3 +3,17 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+@media (max-width: 320px) {
+  .heading-content h2 {
+    font-size: 1.5rem;
+  }
+  .sub-content {
+    width: 240px;
+  }
+  .features {
+    gap: 4px;
+  }
+  .bg {
+    height: 124vh;
+  }
+}

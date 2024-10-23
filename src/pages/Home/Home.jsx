@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Header from "../../components/Header/Header";
 import Slider from "../../components/homepageslider/Slider";
 import About from "../../components/Aboutus/About";
 import Button from "../../components/Button/Button";
+import Services from "../../components/Services/Services";
+import Tesimonial from "../../components/Testimonial/Tesimonial";
+
+import Addblog from "../../components/Addblog";
 function Home() {
   return (
     <>
-      <div className="bg w-full h-[80vh] sm:h-[72vh] md:h-[72vh] lg:h-[130vh] xl:h-[130vh] relative">
+      <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[130vh] xl:h-[130vh] relative">
         <div className="left-container flex flex-col gap-10 absolute top-[12%] left-[12%] lg:top-[17%]">
           <div className="heading-content">
             <h2 className="font-bold font-montserrat text-white text-[2rem] sm:text-[3rem] lg:text-[4rem] flex flex-col gap-0 space-y-0 leading-tight">
@@ -106,9 +110,18 @@ function Home() {
       <div className="about py-5 mt-4">
         <About />
       </div>
-      <Header />
-      <Header />
-      <Header />
+
+      <div className="services">
+        <Services />
+      </div>
+
+      <div className="testimonial">
+        <Tesimonial />
+      </div>
+
+      <div className="addblog">
+        <Addblog />
+      </div>
     </>
   );
 }

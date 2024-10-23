@@ -39,7 +39,7 @@ const Header = () => {
             </svg>
           </button>
           <ul
-            className={`flex-col justify-center w-[70vw] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto bg-[#333] lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
+            className={`flex-col justify-center menu mt-2 w-[70vw] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto bg-[#333] lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
               ismobilemenuopen
                 ? "translate-x-5"
                 : "-translate-x-full lg:translate-x-0"

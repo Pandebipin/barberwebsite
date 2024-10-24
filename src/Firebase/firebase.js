@@ -1,10 +1,11 @@
-// Import the functions you need from the SDKs you need
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// console.log(import.meta.env.VITE_FIREBASE_KEY);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAjXV68mz9D1elxNBAPUbOJXzOk9HjOM0o",
+  apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: "barbershop-1014a.firebaseapp.com",
   projectId: "barbershop-1014a",
   storageBucket: "barbershop-1014a.appspot.com",
@@ -13,7 +14,6 @@ const firebaseConfig = {
   measurementId: "G-2K4MBLTDL0",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();

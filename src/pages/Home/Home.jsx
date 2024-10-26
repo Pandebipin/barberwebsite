@@ -8,6 +8,7 @@ import Services from "../../components/Services/Services";
 import Tesimonial from "../../components/Testimonial/Tesimonial";
 
 import Addblog from "../../components/Addblog";
+import BlogPost from "../../components/Blogspost/BlogPost";
 function Home() {
   return (
     <>
@@ -115,12 +116,13 @@ function Home() {
         <Services />
       </div>
 
-      <div className="testimonial">
+      <div className="testimonial md:pb-2">
         <Tesimonial />
       </div>
 
-      <div className="addblog">
-        <Addblog />
+      <div className="addblog lg:pt-6">
+        {/* <Addblog /> */}
+        <BlogPost />
       </div>
     </>
   );

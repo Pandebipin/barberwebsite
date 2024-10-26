@@ -27,8 +27,8 @@ function Card(props) {
           sed culpa repudiandae molestiae iste suscipit, incidunt .
         </p>
       </div>
-      <div className="p-4 text-center mt-2 flex gap-2 justify-center items-center group">
-        <span className="text-white w-auto group-hover:translate-x-2 transition-transform duration-300 font-semibold cursor-pointer">
+      <div className="p-4 text-center mt-2 flex gap-2 justify-center items-center">
+        <span className="text-white w-auto hover:translate-x-2 transition-transform duration-300 font-semibold cursor-pointer">
           Read more
         </span>
         <svg

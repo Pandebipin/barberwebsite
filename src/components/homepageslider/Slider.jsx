@@ -22,7 +22,7 @@ function Slider() {
           </h1> */}
         </div>
       </div>
-      <style jsx>{`
+      <style jsx="true">{`
         .star-gradient {
           clip-path: polygon(
             50% 0%,

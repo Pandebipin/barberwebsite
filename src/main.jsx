@@ -5,7 +5,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import { Provider } from "react-redux";
-import store from "./Store/store.js";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./Store/store.js";
 const router = createBrowserRouter([
   {
     path: "",
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   </StrictMode>
 );

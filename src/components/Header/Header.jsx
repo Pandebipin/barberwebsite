@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [ismobilemenuopen, setismobilemenuopen] = useState();
-
+  const navigate = useNavigate();
+  const navigation = () => {
+    navigate("/appointment");
+  };
+  const WayToHome = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <header>
@@ -45,14 +53,22 @@ const Header = () => {
                 : "-translate-x-full lg:translate-x-0"
             }`}
           >
-            <li className="hover:text-[#ffb74d] cursor-pointer">Home</li>
+            <li
+              className="hover:text-[#ffb74d] cursor-pointer"
+              onClick={WayToHome}
+            >
+              Home
+            </li>
             <li className="hover:text-[#ffb74d] cursor-pointer">About</li>
             <li className="hover:text-[#ffb74d] cursor-pointer">Service</li>
             <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
             <li className="hover:text-[#ffb74d] cursor-pointer">Features</li>
           </ul>
           <div className="booking">
-            <button className="bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] text-white p-3 px-4 rounded-full cursor-pointer">
+            <button
+              onClick={navigation}
+              className="bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-1 text-[16px] lg:text-lg text-white lg:p-3 px-4 rounded-full cursor-pointer"
+            >
               Book appoinment
             </button>
           </div>

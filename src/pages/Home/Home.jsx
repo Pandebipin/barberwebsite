@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Home.css";
-import Header from "../../components/Header/Header";
 import Slider from "../../components/homepageslider/Slider";
 import About from "../../components/Aboutus/About";
 import Button from "../../components/Button/Button";
@@ -9,6 +8,8 @@ import Tesimonial from "../../components/Testimonial/Tesimonial";
 
 import Addblog from "../../components/Addblog";
 import BlogPost from "../../components/Blogspost/BlogPost";
+import Gallery from "../../components/Gallery/Gallery";
+import Modal from "../../components/Model-offer/Modal";
 function Home() {
   return (
     <>
@@ -63,11 +64,11 @@ function Home() {
           </div>
 
           <div className="features flex gap-8 px-2">
-            <div className="first flex flex-col border-r-4 pr-5 border-gray-300 gap-1">
+            <div className="first flex flex-col border-r-4 lg:pr-5 border-gray-300 gap-1">
               <h2 className="text-[1rem] lg:text-[2rem] bg-gradient-to-r from-[#FF4500] via-[#FF6347] to-[#FF7F50] bg-clip-text text-transparent">
                 20+
               </h2>
-              <div className="content flex flex-col">
+              <div className="content flex flex-col pr-2 lg:pr-0">
                 <span className="text-white text-[14px] lg:text-[1rem] ">
                   Years of
                 </span>
@@ -123,6 +124,14 @@ function Home() {
       <div className="addblog lg:pt-6">
         {/* <Addblog /> */}
         <BlogPost />
+      </div>
+
+      <div className="gallery">
+        <Gallery />
+      </div>
+
+      <div className="modal lg:pt-4">
+        <Modal />
       </div>
     </>
   );

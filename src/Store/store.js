@@ -2,7 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import BlogpostSlice from "./BlogpostSlice"; // Adjust the path as needed
+import BlogpostSlice from "./BlogpostSlice";
 
 const persistConfig = {
   key: "root",

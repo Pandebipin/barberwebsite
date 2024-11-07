@@ -47,7 +47,7 @@ function Tesimonial() {
                 key={index}
                 onClick={() => setcurrentIndex(index)}
                 className={`cursor-pointer mx-2 w-[14px] h-[14px] bg-slate-300 rounded-xl ${
-                  currentIndex === index ? "bg-orange-600" : "bg-white"
+                  currentIndex === index ? "bg-orange-400" : "bg-white"
                 }`}
               ></span>
             ))}

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { blogs, deleteBlog, fetchblogs } from "../../Store/BlogpostSlice";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
+import { Link } from "react-router-dom";
 
 function BlogPost() {
   const dispatch = useDispatch();
   const blog = useSelector(blogs);
-  const [newvalue, setnewvalue] = useState("");
 
   useEffect(() => {
     if (blog.length === 0) {
@@ -45,12 +45,12 @@ function BlogPost() {
                 />
                 <div className="p-4 pt-2">
                   <div className="mb-2 py-1">
-                    <a
-                      href="#"
+                    <Link
+                      to={`blog/${elem.id}`}
                       className="text-white font-bold text-lg mb-2 py-3 hover:text-indigo-600 inline-block"
                     >
                       {elem.title}
-                    </a>
+                    </Link>
                     <p className="text-gray-400 text-sm">{elem.desc}</p>
                     <button onClick={() => handleDelete(elem.id)}>
                       delete doc

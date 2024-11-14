@@ -1,16 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Slider from "../../components/homepageslider/Slider";
 import About from "../../components/Aboutus/About";
 import Button from "../../components/Button/Button";
 import Services from "../../components/Services/Services";
 import Tesimonial from "../../components/Testimonial/Tesimonial";
-
 import Addblog from "../../components/Addblog";
 import BlogPost from "../../components/Blogspost/BlogPost";
 import Gallery from "../../components/Gallery/Gallery";
 import Modal from "../../components/Model-offer/Modal";
+import { Link } from "react-router-dom";
+import { Box, Modal as Modal2 } from "@mui/material";
+
 function Home() {
+  const [isOpen, setisOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "gray",
+    boxShadow: 24,
+    p: 4,
+  };
   return (
     <>
       <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[130vh] xl:h-[130vh] relative">
@@ -47,8 +62,13 @@ function Home() {
           </div>
 
           <div className="buttons flex gap-6 items-center">
-            <Button name={"Get Started"} />
-            <button className="text-white flex items-center gap-3">
+            <Link to={"/appointment"}>
+              <Button name={"Get Started"} />
+            </Link>
+            <button
+              onClick={() => setisOpen(!isOpen)}
+              className="text-white flex items-center gap-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -62,6 +82,36 @@ function Home() {
               Watch Video
             </button>
           </div>
+          <div
+            className="w-full h-[60vh] opacity-5 bg-white"
+            onClick={handleOpen}
+          ></div>
+
+          <Modal2
+            keepMounted
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="keep-mounted-modal-title"
+            aria-describedby="keep-mounted-modal-description"
+          >
+            <Box
+              sx={style}
+              className="max-w-[15rem] md:max-w-xl  w-full h-[80vh] overflow-auto outline-none rounded-lg"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/WfPmnAuYomw?si=M92HuNDWzlfppvzM"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </Box>
+          </Modal2>
 
           <div className="features flex gap-8 px-2">
             <div className="first flex flex-col border-r-4 lg:pr-5 border-gray-300 gap-1">

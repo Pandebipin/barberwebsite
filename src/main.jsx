@@ -9,6 +9,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./Store/store.js";
 import BlogsinglePost from "./components/BlogsinglePost/BlogsinglePost.jsx";
 import AppointmentFirst from "./components/Appointment-firstsec/AppointmentFirst.jsx";
+import AppointmentSecond from "./components/Appointment-secondSec/Appointment-Second.jsx";
+import Userdata from "./components/Userdata/Userdata.jsx";
 const router = createBrowserRouter([
   {
     path: "",
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/appointment",
         element: <AppointmentFirst />,
+      },
+      {
+        path: "/appointmentcalendar/:haircut",
+        element: <AppointmentSecond />,
+      },
+      {
+        path: "userAvailable",
+        element: <Userdata />,
       },
     ],
   },

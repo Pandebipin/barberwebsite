@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 function About() {
   return (
     <div className="w-full relative h-auto flex flex-col lg:flex-row py-10 justify-center gap-6 lg:gap-8 px-4 items-center">
-      <div className="left w-auto text-white border-l-[50px] rounded-md border-gray-400">
+      <div className="left w-auto text-white">
         <img
           className="lg:w-[300px] shadow-lg lg:h-[450px] h-[300px] w-[250px] object-cover rounded-md"
           src="https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc="

@@ -1,33 +1,58 @@
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { useParams } from "react-router-dom";
 import data from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "../../Store/UserdataSlice";
-// import Userdata from "../Userdata/Userdata";
+import { AddAlldata, Alldata, fetchAlldata } from "../../Store/DataSlice";
 
 function AppointmentSecond() {
   const [firstname, setFirstname] = useState("");
   const [secondname, setSecondname] = useState("");
   const [email, setEmail] = useState("");
-  const [number, setNumber] = useState(null);
+  const [number, setNumber] = useState("");
+  const [timing, settimming] = useState(null);
   const { haircut } = useParams();
   const filter = data.haircuts.filter((hoc) => hoc.id == haircut);
-  const current = filter.map((elem) => elem.name);
+  const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
+  const data2 = useSelector(Alldata);
+  console.log("Fetched data from Redux:", data2[0]);
+  const dispatch = useDispatch();
 
   //   console.log(time);
   // console.log("filterable", filter);
-  //   console.log(current);
-  const dispatch = useDispatch();
+
   const Submit = (e) => {
     e.preventDefault();
-    dispatch(addData({ secondname, firstname, number, time: time[0] }));
+    if (secondname && firstname && number && time && timing) {
+      dispatch(
+        addData({ secondname, firstname, number, time: time[0], timing })
+      );
+    } else {
+      alert("please fill the form essential !");
+    }
   };
-  //   console.log(firstname);
+  useEffect(() => {
+    dispatch(fetchAlldata());
+  }, [dispatch]);
+
+  const ButtonAct = (ind, e) => {
+    const updateSlots = {
+      [haircut]: ind,
+    };
+    const id = updateSlots;
+    dispatch(AddAlldata({ id }));
+    settimming(e);
+  };
+
+  //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
+  //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
 
   return (
-    <div className="text-white md:h-[900px] lg:h-[1024px] py-6 lg:py-0 lg:mt-5">
-      <h1 className="text-center py-6 mb-2 capitalize">for {current} </h1>
+    <div className="text-white py-6 lg:py-0 lg:mt-5">
+      <h1 className="text-center py-6 mb-2 capitalize">
+        for {currentHairname}{" "}
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="first">
           <form className="md:max-w-md max-w-xs mx-auto px-2">
@@ -115,19 +140,34 @@ function AppointmentSecond() {
           </form>
         </div>
 
-        <div className="md:w-[40vw] max-w-xs py-3 max-h-[67vh] md:max-h-screen mt-4 md:max-w-md mx-auto md:h-[100vh] border-4 border-gray-600">
-          <div className="second md:w-[35vw] md:max-w-md md:h-[60vh] calendar border-2 border-gray-500 h-[22vh]"></div>
-          <div className="avilable-slots text-white mt-2 flex flex-wrap">
+        <div className="md:w-[40vw] max-w-xs py-3 max-h-[67vh] mt-4 md:max-w-md mx-auto border-4 border-gray-600">
+          {/* <div className="second md:w-[35vw] md:max-w-md md:h-[60vh] calendar border-2 border-gray-500 h-[22vh]">
+            <div className="insider bg-red-100 p-4 flex justify-center ">
+            // for calendar
+            </div>
+          </div> */}
+          <div className="available-slots text-white mt-2 flex flex-wrap">
             {filter.length > 0 ? (
-              filter[0].timeSlots.map((slot) => {
+              filter[0].timeSlots.map((slot, ind) => {
+                const isDisabled = data2[0]?.id[haircut] === ind;
+
                 return (
-                  <button className="p-2 rounded m-1 bg-gray-500">
+                  <button
+                    key={ind}
+                    disabled={isDisabled}
+                    onClick={() => ButtonAct(ind, slot)}
+                    className={`p-2 rounded m-1 ${
+                      isDisabled
+                        ? "bg-red-500 cursor-not-allowed"
+                        : "bg-gray-500 cursor-pointer"
+                    }`}
+                  >
                     {slot}
                   </button>
                 );
               })
             ) : (
-              <p>no avilable slots</p>
+              <p>No available slots</p>
             )}
           </div>
         </div>

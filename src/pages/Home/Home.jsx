@@ -66,7 +66,7 @@ function Home() {
               <Button name={"Get Started"} />
             </Link>
             <button
-              onClick={() => setisOpen(!isOpen)}
+              onClick={handleOpen}
               className="text-white flex items-center gap-3"
             >
               <svg
@@ -82,10 +82,6 @@ function Home() {
               Watch Video
             </button>
           </div>
-          <div
-            className="w-full h-[60vh] opacity-5 bg-white"
-            onClick={handleOpen}
-          ></div>
 
           <Modal2
             keepMounted
@@ -96,11 +92,12 @@ function Home() {
           >
             <Box
               sx={style}
-              className="max-w-[15rem] md:max-w-xl  w-full h-[80vh] overflow-auto outline-none rounded-lg"
+              className="max-w-[20rem] md:max-w-xl lg:max-w-screen-sm  w-full md:h-[45vh] lg:h-[70vh] overflow-auto outline-none rounded-lg"
             >
               <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <iframe
-                  width="560"
+                  className="w-[260px] md:w-[600px]"
+                  width="600"
                   height="315"
                   src="https://www.youtube.com/embed/WfPmnAuYomw?si=M92HuNDWzlfppvzM"
                   title="YouTube video player"

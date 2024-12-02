@@ -32,7 +32,16 @@ const data = {
       name: "Fade cut",
       price: 80,
       time: "50",
-      timeSlots: ["10.00am", "10.50am", "11:30am", "12:10pm"],
+      timeSlots: [
+        "10.00am",
+        "10.50am",
+        "11:30am",
+        "12:10pm",
+        "01.00",
+        "01.50",
+        "02.00",
+        "02.50",
+      ],
     },
     {
       id: "cuts4",

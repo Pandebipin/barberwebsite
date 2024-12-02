@@ -1,5 +1,4 @@
 import React from "react";
-import AppointmentSecond from "../Appointment-secondSec/Appointment-Second";
 import data from "../data";
 import { Link } from "react-router-dom";
 
@@ -10,7 +9,7 @@ function AppointmentFirst() {
         <div className="left flex flex-col gap-6 w-[50vw] md:h-screen lg:h-auto px-3">
           <div className="flex gap-4 mt-5 items-center">
             <img
-              className="logo lg:w-20 lg:h-20 object-cover border-2 border-white rounded-full overflow-hidden "
+              className="logo w-16 md:w-20 md:h-20 object-cover border-2 border-white rounded-full overflow-hidden "
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRybJSVgHqJemIZHKYL6gpCo2O1tIhclTMB8Q&s"
               alt=""
             />
@@ -27,12 +26,12 @@ function AppointmentFirst() {
               return (
                 <div className="flex md:gap-4 gap-7 md:justify-around items-center">
                   <div className="first py-2 flex flex-col gap-5 items-center">
-                    <h1 className="text-white text-sm md:text-xl px-2 ">
+                    <h1 className="text-white whitespace-nowrap text-sm md:text-xl px-2 ">
                       {elem.name}
                     </h1>
                   </div>
                   <div className="second py-2 flex flex-col md:items-center gap-7 md:gap-6">
-                    <h1 className="text-white text-sm md:text-xl">
+                    <h1 className="text-white whitespace-nowrap text-sm md:text-xl">
                       {elem.time} min
                     </h1>
                   </div>

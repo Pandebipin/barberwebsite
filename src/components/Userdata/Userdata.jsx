@@ -12,9 +12,9 @@ function Userdata() {
 
   useEffect(() => {
     dispatch(fetchdata());
-  });
+  }, [dispatch]);
 
-  const timest = (time, id) => {
+  const timest = async (time, id) => {
     // console.log(time);
     setTime(time);
     setactiveId(id);
@@ -26,10 +26,11 @@ function Userdata() {
           return prevTime - 1;
         } else {
           clearInterval(interval);
+          deleteData(id);
           return 0;
         }
       });
-    }, 6000);
+    }, 1000);
   };
 
   const deleteData = async (id) => {
@@ -45,7 +46,10 @@ function Userdata() {
       ;
       {data1.map((elem) => {
         return (
-          <div className="flex justify-center items-center w-full h-auto md:gap-8">
+          <div
+            key={elem.id}
+            className="flex justify-center items-center w-full h-auto md:gap-8"
+          >
             <h1 className="text-white px-2 md:text-lg items-center capitalize">
               {elem.firstname} {elem.secondname}
             </h1>

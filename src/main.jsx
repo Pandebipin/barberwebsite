@@ -11,6 +11,10 @@ import BlogsinglePost from "./components/BlogsinglePost/BlogsinglePost.jsx";
 import AppointmentFirst from "./components/Appointment-firstsec/AppointmentFirst.jsx";
 import AppointmentSecond from "./components/Appointment-secondSec/Appointment-Second.jsx";
 import Userdata from "./components/Userdata/Userdata.jsx";
+import Pricing from "./components/Pricing/Pricing.jsx";
+import Services from "./components/Services/Services.jsx";
+import History from "./History-about/History.jsx";
+import Contact from "./components/Contact/Contact.jsx";
 const router = createBrowserRouter([
   {
     path: "",
@@ -35,6 +39,22 @@ const router = createBrowserRouter([
       {
         path: "userAvailable",
         element: <Userdata />,
+      },
+      {
+        path: "/Pricing",
+        element: <Pricing />,
+      },
+      {
+        path: "/Services",
+        element: <Services />,
+      },
+      {
+        path: "/History-About",
+        element: <History />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

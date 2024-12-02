@@ -59,7 +59,7 @@ const BlogpostSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchblogs.fulfilled, (state, action) => {
-        console.log("Fetched blogs:", action.payload);
+        // console.log("Fetched blogs:", action.payload);
         state.blog = action.payload;
       })
       .addCase(AddBlog.fulfilled, (state, action) => {

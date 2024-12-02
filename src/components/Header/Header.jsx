@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [ismobilemenuopen, setismobilemenuopen] = useState();
@@ -17,6 +17,7 @@ const Header = () => {
         <nav className="flex items-center justify-around gap-2 py-4 px-4 md:px-8">
           <div className="logo">
             <img
+              onClick={WayToHome}
               className="w-[100px] h-[70px] object-cover text-white cursor-pointer"
               src="https://marketplace.canva.com/EAGGacYcM1I/1/0/1600w/canva-vintage-ornament-barbershop-logo-CeBhjirpIjM.jpg"
               alt=""
@@ -59,10 +60,16 @@ const Header = () => {
             >
               Home
             </li>
-            <li className="hover:text-[#ffb74d] cursor-pointer">About</li>
-            <li className="hover:text-[#ffb74d] cursor-pointer">Service</li>
-            <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
-            <li className="hover:text-[#ffb74d] cursor-pointer">Features</li>
+            <Link to={"/History-About"}>
+              <li className="hover:text-[#ffb74d] cursor-pointer">About</li>
+            </Link>
+            <Link to={"/Services"}>
+              <li className="hover:text-[#ffb74d] cursor-pointer">Service</li>
+            </Link>
+            <Link to={"/Pricing"}>
+              {" "}
+              <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
+            </Link>
           </ul>
           <div className="booking">
             <button

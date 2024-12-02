@@ -7,6 +7,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
     <div className="lg:h-[50vh] h-full w-full py-8 mt-6 text-white bg-[#17172B] ">
@@ -34,7 +35,7 @@ export const Footer = () => {
             <span className="flex gap-2">
               {" "}
               <LocationOnIcon />
-              new york 450 2nd, st.suite
+              kapilvastu-gorusinge 450 2nd, st.suite
             </span>
             <span className="flex gap-2">
               {" "}
@@ -53,11 +54,21 @@ export const Footer = () => {
         <div className="first flex flex-col gap-1">
           <h1>Links</h1>
           <div className="py-2">
-            <h2>Services</h2>
-            <h2>Book Appointment</h2>
-            <h2>About</h2>
-            <h2>Privacy Policy</h2>
-            <h2>contact</h2>
+            <Link to={"/Services"}>
+              <h2>Services</h2>
+            </Link>
+            <Link to={"/History-About"}>
+              <h2>About</h2>
+            </Link>
+            <Link to={"/appointment"}>
+              <h2>Book Appointment</h2>
+            </Link>
+            <Link to={"/"}>
+              <h2>Privacy Policy</h2>
+            </Link>
+            <Link to={"/Contact"}>
+              <h2>contact</h2>
+            </Link>
           </div>
         </div>
         <div className="first flex flex-col gap-4">

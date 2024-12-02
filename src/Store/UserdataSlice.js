@@ -20,18 +20,19 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
 });
 
 export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { number, secondname, firstname, time } = data;
+  const { number, secondname, firstname, time, timing } = data;
   try {
     const firestoreref = getFirestore();
-    // console.log("adding data", data);
+    console.log("adding data", data);
 
     const docref = await addDoc(collection(firestoreref, "Userdata"), {
       firstname,
       secondname,
       number,
       time,
+      timing,
     });
-    // console.log("data added", data);
+    console.log("data added", data);
 
     return {
       id: docref.id,
@@ -39,6 +40,7 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       secondname,
       number,
       time,
+      timing,
     };
   } catch (error) {
     throw error;
@@ -60,7 +62,7 @@ const UserdataSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(addData.fulfilled, (state, action) => {
-        // console.log("data added:", action.payload);
+        console.log("data added:", action.payload);
         state.data.push(action.payload);
       });
   },

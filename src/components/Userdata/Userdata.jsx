@@ -27,6 +27,7 @@ function Userdata() {
         } else {
           clearInterval(interval);
           deleteData(id);
+
           return 0;
         }
       });

@@ -24,13 +24,14 @@ export const fetchAlldata = createAsyncThunk("Alldata/fetchdata", async () => {
 export const AddAlldata = createAsyncThunk(
   "addAlldata/alldata",
   async (data) => {
-    const { id } = data;
+    const { id, timeslots } = data;
     try {
       const firestoreref = getFirestore();
       const docref = await addDoc(collection(firestoreref, "Alldata"), {
         id,
+        timeslots,
       });
-      return { id: docref.id, id };
+      return { id, timeslots };
     } catch (error) {
       throw error;
     }
@@ -39,7 +40,13 @@ export const AddAlldata = createAsyncThunk(
 const DataSlice = createSlice({
   name: "Alldata",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteId: (state, action) => {
+      state.Alldata.timeslots = state.Alldata.timeslots.filter(
+        (data) => data.id !== action.payload
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAlldata.fulfilled, (state, action) => {
       state.Alldata = action.payload;
@@ -53,4 +60,5 @@ const DataSlice = createSlice({
 });
 
 export const Alldata = (state) => state.AllData?.Alldata;
+export const { deleteId } = DataSlice.actions;
 export default DataSlice.reducer;

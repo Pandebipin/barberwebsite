@@ -1,20 +1,31 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home/Home.jsx";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./Store/store.js";
-import BlogsinglePost from "./components/BlogsinglePost/BlogsinglePost.jsx";
-import AppointmentFirst from "./components/Appointment-firstsec/AppointmentFirst.jsx";
-import AppointmentSecond from "./components/Appointment-secondSec/Appointment-Second.jsx";
-import Userdata from "./components/Userdata/Userdata.jsx";
-import Pricing from "./components/Pricing/Pricing.jsx";
-import Services from "./components/Services/Services.jsx";
-import History from "./History-about/History.jsx";
-import Contact from "./components/Contact/Contact.jsx";
+
+// Lazy load components
+const Home = lazy(() => import("./pages/Home/Home.jsx"));
+const BlogsinglePost = lazy(() =>
+  import("./components/BlogsinglePost/BlogsinglePost.jsx")
+);
+const AppointmentFirst = lazy(() =>
+  import("./components/Appointment-firstsec/AppointmentFirst.jsx")
+);
+const AppointmentSecond = lazy(() =>
+  import("./components/Appointment-secondSec/Appointment-second.jsx")
+);
+const Userdata = lazy(() => import("./components/Userdata/Userdata.jsx"));
+const Pricing = lazy(() => import("./components/Pricing/Pricing.jsx"));
+const Services = lazy(() => import("./components/Services/Services.jsx"));
+const History = lazy(() => import("./History-about/History.jsx"));
+const Contact = lazy(() => import("./components/Contact/Contact.jsx"));
+const Myprofile = lazy(() => import("./components/Myprofile/Myprofile.jsx"));
+
+// Define router
 const router = createBrowserRouter([
   {
     path: "",
@@ -56,14 +67,22 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "Myprofile",
+        element: <Myprofile />,
+      },
     ],
   },
 ]);
+
+// Render the app with Suspense wrapper
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
       </PersistGate>
     </Provider>
   </StrictMode>

@@ -52,9 +52,9 @@ function BlogPost() {
                       {elem.title}
                     </Link>
                     <p className="text-gray-400 text-sm">{elem.desc}</p>
-                    <button onClick={() => handleDelete(elem.id)}>
+                    {/* <button onClick={() => handleDelete(elem.id)}>
                       delete doc
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

@@ -16,35 +16,40 @@ function AppointmentSecond() {
   const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
   const data2 = useSelector(Alldata);
-  console.log("Fetched data from Redux:", data2[0]);
   const dispatch = useDispatch();
-
+  const timeslots = filter[0].timeSlots;
   //   console.log(time);
   // console.log("filterable", filter);
 
   const Submit = (e) => {
     e.preventDefault();
-    if (secondname && firstname && number && time && timing) {
+    if (email && secondname && firstname && number && time) {
       dispatch(
         addData({ secondname, firstname, number, time: time[0], timing })
       );
+      const updateSlots = {
+        ...timing,
+        [haircut]: timing,
+      };
+
+      dispatch(AddAlldata({ id: timing, timeslots: updateSlots }));
     } else {
       alert("please fill the form essential !");
     }
   };
   useEffect(() => {
     dispatch(fetchAlldata());
+    // dispatch(AddAlldata({ timeslots }));
   }, [dispatch]);
 
   const ButtonAct = (ind, e) => {
-    const updateSlots = {
-      [haircut]: ind,
-    };
-    const id = updateSlots;
-    dispatch(AddAlldata({ id }));
-    settimming(e);
+    settimming(ind);
   };
-
+  console.log("Fetched data from Redux:", data2.id);
+  const mapeddata = data2.map((elem) => elem.id);
+  const maped2 = data2.map((elem) => elem.timeslots);
+  console.log(maped2);
+  // if (mapeddata == maped2)
   //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
   //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
 
@@ -149,15 +154,15 @@ function AppointmentSecond() {
           <div className="available-slots text-white mt-2 flex flex-wrap">
             {filter.length > 0 ? (
               filter[0].timeSlots.map((slot, ind) => {
-                const isDisabled = data2[0]?.id[haircut] === ind;
-
+                if (maped2 == slot) {
+                  alert("true");
+                }
                 return (
                   <button
                     key={ind}
-                    disabled={isDisabled}
                     onClick={() => ButtonAct(ind, slot)}
                     className={`p-2 rounded m-1 ${
-                      isDisabled
+                      maped2 == ind
                         ? "bg-red-500 cursor-not-allowed"
                         : "bg-gray-500 cursor-pointer"
                     }`}

@@ -3,7 +3,14 @@ import { useParams } from "react-router-dom";
 import data from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "../../Store/UserdataSlice";
-import { AddAlldata, Alldata, fetchAlldata } from "../../Store/DataSlice";
+import {
+  AddAlldata,
+  Alldata,
+  deleteId,
+  fetchAlldata,
+} from "../../Store/DataSlice";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
 
 function AppointmentSecond() {
   const [firstname, setFirstname] = useState("");
@@ -11,15 +18,19 @@ function AppointmentSecond() {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [timing, settimming] = useState(null);
+  const [disableIndex, setdisableIndex] = useState({});
   const { haircut } = useParams();
   const filter = data.haircuts.filter((hoc) => hoc.id == haircut);
   const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
   const data2 = useSelector(Alldata);
   const dispatch = useDispatch();
-  const timeslots = filter[0].timeSlots;
+
   //   console.log(time);
   // console.log("filterable", filter);
+  useEffect(() => {
+    dispatch(fetchAlldata());
+  }, [dispatch]);
 
   const Submit = (e) => {
     e.preventDefault();
@@ -28,28 +39,31 @@ function AppointmentSecond() {
         addData({ secondname, firstname, number, time: time[0], timing })
       );
       const updateSlots = {
-        ...timing,
+        ...disableIndex,
         [haircut]: timing,
       };
+      setdisableIndex(updateSlots);
 
-      dispatch(AddAlldata({ id: timing, timeslots: updateSlots }));
+      dispatch(AddAlldata({ id: timing, timeslots: disableIndex }));
+      const ind = filter[0].timeSlots.map((slot, ind) => ind);
+      if (disableIndex[haircut] == ind) {
+        deleteDoc(doc(db, "Alldata", ind));
+        dispatch(deleteId(ind));
+        console.log(`Document with ID ${ind} has been deleted`);
+        return ind;
+      }
     } else {
       alert("please fill the form essential !");
     }
   };
-  useEffect(() => {
-    dispatch(fetchAlldata());
-    // dispatch(AddAlldata({ timeslots }));
-  }, [dispatch]);
 
   const ButtonAct = (ind, e) => {
     settimming(ind);
   };
-  console.log("Fetched data from Redux:", data2.id);
+  console.log("Fetched data from Redux:", data2);
   const mapeddata = data2.map((elem) => elem.id);
   const maped2 = data2.map((elem) => elem.timeslots);
-  console.log(maped2);
-  // if (mapeddata == maped2)
+
   //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
   //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
 
@@ -154,15 +168,16 @@ function AppointmentSecond() {
           <div className="available-slots text-white mt-2 flex flex-wrap">
             {filter.length > 0 ? (
               filter[0].timeSlots.map((slot, ind) => {
-                if (maped2 == slot) {
+                if (mapeddata == slot) {
                   alert("true");
                 }
                 return (
                   <button
                     key={ind}
+                    disabled={disableIndex[haircut] == ind}
                     onClick={() => ButtonAct(ind, slot)}
                     className={`p-2 rounded m-1 ${
-                      maped2 == ind
+                      disableIndex[haircut] == ind
                         ? "bg-red-500 cursor-not-allowed"
                         : "bg-gray-500 cursor-pointer"
                     }`}

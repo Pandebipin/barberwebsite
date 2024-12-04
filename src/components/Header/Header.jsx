@@ -71,10 +71,10 @@ const Header = () => {
               <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
             </Link>
           </ul>
-          <div className="booking ">
+          <div className="booking flex md:block gap-1  leading-tight">
             <button
               onClick={navigation}
-              className="pr-1 bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-1 text-[16px] lg:text-lg text-white lg:p-3 px-4 rounded-full cursor-pointer"
+              className="pr-1 text-center bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-1 text-[16px] lg:text-lg text-white lg:p-3 px-4 rounded-full cursor-pointer"
             >
               Book appoinment
             </button>

@@ -42,7 +42,7 @@ const DataSlice = createSlice({
   initialState,
   reducers: {
     deleteId: (state, action) => {
-      state.Alldata.timeslots = state.Alldata.timeslots.filter(
+      state.Alldata = state.Alldata.filter(
         (data) => data.id !== action.payload
       );
     },

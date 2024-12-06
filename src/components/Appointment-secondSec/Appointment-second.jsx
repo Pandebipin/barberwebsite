@@ -18,8 +18,8 @@ function AppointmentSecond() {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [timing, settimming] = useState(null);
-  const [disableIndex, setdisableIndex] = useState({});
   const { haircut } = useParams();
+  const [disableIndex, setdisableIndex] = useState();
   const filter = data.haircuts.filter((hoc) => hoc.id == haircut);
   const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
@@ -38,20 +38,8 @@ function AppointmentSecond() {
       dispatch(
         addData({ secondname, firstname, number, time: time[0], timing })
       );
-      const updateSlots = {
-        ...disableIndex,
-        [haircut]: timing,
-      };
-      setdisableIndex(updateSlots);
 
-      dispatch(AddAlldata({ id: timing, timeslots: disableIndex }));
-      const ind = filter[0].timeSlots.map((slot, ind) => ind);
-      if (disableIndex[haircut] == ind) {
-        deleteDoc(doc(db, "Alldata", ind));
-        dispatch(deleteId(ind));
-        console.log(`Document with ID ${ind} has been deleted`);
-        return ind;
-      }
+      dispatch(AddAlldata({ id: haircut, timeslots: timing }));
     } else {
       alert("please fill the form essential !");
     }
@@ -59,10 +47,21 @@ function AppointmentSecond() {
 
   const ButtonAct = (ind, e) => {
     settimming(ind);
+    useEffect(() => {
+      const isDisabled = bookslots === ind;
+      if (isDisabled) {
+        console.log("truee", isDisabled);
+        setdisableIndex(isDisabled);
+      }
+    });
   };
-  console.log("Fetched data from Redux:", data2);
-  const mapeddata = data2.map((elem) => elem.id);
-  const maped2 = data2.map((elem) => elem.timeslots);
+  const selectedHaircut = data2.find((a) => a.id === haircut);
+  // console.log(selectedHaircut.timeslots);
+
+  const bookslots = selectedHaircut?.timeslots;
+  // console.log(bookslots);
+
+  // console.log("Fetched data from Redux:", data2);
 
   //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
   //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
@@ -168,16 +167,13 @@ function AppointmentSecond() {
           <div className="available-slots text-white mt-2 flex flex-wrap">
             {filter.length > 0 ? (
               filter[0].timeSlots.map((slot, ind) => {
-                if (mapeddata == slot) {
-                  alert("true");
-                }
                 return (
                   <button
                     key={ind}
-                    disabled={disableIndex[haircut] == ind}
+                    disabled={disableIndex}
                     onClick={() => ButtonAct(ind, slot)}
                     className={`p-2 rounded m-1 ${
-                      disableIndex[haircut] == ind
+                      disableIndex
                         ? "bg-red-500 cursor-not-allowed"
                         : "bg-gray-500 cursor-pointer"
                     }`}

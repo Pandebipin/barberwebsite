@@ -10,10 +10,8 @@ function BlogPost() {
   const blog = useSelector(blogs);
 
   useEffect(() => {
-    if (blog.length === 0) {
-      dispatch(fetchblogs());
-    }
-  }, [dispatch, blog.length]);
+    dispatch(fetchblogs());
+  }, [dispatch]);
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "blogdata", id));
@@ -35,9 +33,12 @@ function BlogPost() {
 
       <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
         <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 ">
-          {blog.map((elem) => {
+          {blog?.map((elem) => {
             return (
-              <div className="bg-[#16162A] flex flex-col justify-between leading-normal rounded-lg">
+              <div
+                key={elem.id}
+                className="bg-[#16162A] flex flex-col justify-between leading-normal rounded-lg"
+              >
                 <img
                   className="h-[300px] object-cover rounded-lg"
                   src={elem.img}

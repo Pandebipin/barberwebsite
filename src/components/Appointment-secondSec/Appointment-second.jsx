@@ -19,7 +19,7 @@ function AppointmentSecond() {
   const [number, setNumber] = useState("");
   const [timing, settimming] = useState(null);
   const { haircut } = useParams();
-  const [disableIndex, setdisableIndex] = useState();
+  const [disableIndex, setdisableIndex] = useState({});
   const filter = data.haircuts.filter((hoc) => hoc.id == haircut);
   const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
@@ -47,21 +47,14 @@ function AppointmentSecond() {
 
   const ButtonAct = (ind, e) => {
     settimming(ind);
-    useEffect(() => {
-      const isDisabled = bookslots === ind;
-      if (isDisabled) {
-        console.log("truee", isDisabled);
-        setdisableIndex(isDisabled);
-      }
-    });
   };
   const selectedHaircut = data2.find((a) => a.id === haircut);
   // console.log(selectedHaircut.timeslots);
 
   const bookslots = selectedHaircut?.timeslots;
-  // console.log(bookslots);
+  console.log(bookslots);
 
-  // console.log("Fetched data from Redux:", data2);
+  console.log("Fetched data from Redux:", data2);
 
   //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
   //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
@@ -167,13 +160,17 @@ function AppointmentSecond() {
           <div className="available-slots text-white mt-2 flex flex-wrap">
             {filter.length > 0 ? (
               filter[0].timeSlots.map((slot, ind) => {
+                const isDisabled = bookslots === ind;
+                if (isDisabled) {
+                  console.log("truee", isDisabled);
+                }
                 return (
                   <button
                     key={ind}
-                    disabled={disableIndex}
+                    disabled={isDisabled}
                     onClick={() => ButtonAct(ind, slot)}
                     className={`p-2 rounded m-1 ${
-                      disableIndex
+                      isDisabled
                         ? "bg-red-500 cursor-not-allowed"
                         : "bg-gray-500 cursor-pointer"
                     }`}

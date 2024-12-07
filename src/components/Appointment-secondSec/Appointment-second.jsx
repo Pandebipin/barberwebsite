@@ -45,7 +45,7 @@ function AppointmentSecond() {
     }
   };
 
-  const ButtonAct = (ind, e) => {
+  const ButtonAct = (ind) => {
     settimming(ind);
   };
   const selectedHaircut = data2.find((a) => a.id === haircut);

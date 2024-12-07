@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const Pricing = () => {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className=" dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold  dark:text-white">
             Choose Your Perfect Hair Plan
           </h2>
           <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
@@ -16,7 +16,7 @@ const Pricing = () => {
           </p>
         </div>
         <div className="space-y-8 lg:grid lg:grid-cols-2 sm:gap-6 lg:space-y-0">
-          <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+          <div className="flex flex-col p-6 mx-auto max-w-lg text-center  bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h3 className="mb-4 text-2xl font-semibold">Basic cut</h3>
             <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
               Perfect for a quick and clean haircut
@@ -86,7 +86,7 @@ const Pricing = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+          <div className="flex flex-col p-6 mx-auto max-w-lg text-center  bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h3 className="mb-4 text-2xl font-semibold">Premium Haircut</h3>
             <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
               stylish and customized haircuts.

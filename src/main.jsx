@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./Store/store.js";
+import Signup from "./pages/Signup/Signup.jsx";
+import Login from "./pages/Login/Login.jsx";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
       {
         path: "Myprofile",
         element: <Myprofile />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

@@ -24,7 +24,10 @@ function AppointmentFirst() {
             </h1>
             {data.haircuts.map((elem) => {
               return (
-                <div className="flex md:gap-4 gap-7 md:justify-around items-center">
+                <div
+                  key={elem.id}
+                  className="flex md:gap-4 gap-7 md:justify-around items-center"
+                >
                   <div className="first py-2 flex flex-col gap-5 items-center">
                     <h1 className="text-white whitespace-nowrap text-sm md:text-xl px-2 ">
                       {elem.name}

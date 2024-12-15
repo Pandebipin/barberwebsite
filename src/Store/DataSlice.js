@@ -50,11 +50,11 @@ const DataSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchAlldata.fulfilled, (state, action) => {
       state.Alldata = action.payload;
-      console.log("fetched", action.payload);
+      // console.log("fetched", action.payload);
     });
     builder.addCase(AddAlldata.fulfilled, (state, action) => {
       state.Alldata.push(action.payload);
-      console.log("data added", action.payload);
+      // console.log("data added", action.payload);
     });
   },
 });

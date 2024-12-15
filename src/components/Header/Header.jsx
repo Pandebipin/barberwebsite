@@ -18,7 +18,7 @@ const Header = () => {
           <div className="logo">
             <img
               onClick={WayToHome}
-              className="w-[100px] h-[70px] object-cover text-white cursor-pointer"
+              className="w-[80px] md:w-[120px] h-[70px] object-contain text-white cursor-pointer"
               src="https://marketplace.canva.com/EAGGacYcM1I/1/0/1600w/canva-vintage-ornament-barbershop-logo-CeBhjirpIjM.jpg"
               alt=""
             />
@@ -48,9 +48,9 @@ const Header = () => {
             </svg>
           </button>
           <ul
-            className={`flex-col justify-center menu mt-2 w-[70vw] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto bg-[#333] lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
+            className={`flex-col justify-center gap-8 menu mt-2 w-[80vw] bg-[#333] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
               ismobilemenuopen
-                ? "translate-x-5"
+                ? "translate-x-0"
                 : "-translate-x-full lg:translate-x-0"
             }`}
           >
@@ -71,10 +71,10 @@ const Header = () => {
               <li className="hover:text-[#ffb74d] cursor-pointer">Pricing</li>
             </Link>
           </ul>
-          <div className="booking flex md:block gap-1  leading-tight">
+          <div className="booking flex md:block gap-2 leading-tight">
             <button
               onClick={navigation}
-              className="pr-1 text-center bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-1 text-[16px] lg:text-lg text-white lg:p-3 px-4 rounded-full cursor-pointer"
+              className="pr-1 text-center bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-2 text-[14px] lg:text-lg text-white lg:p-4 px-2 rounded-full cursor-pointer transition-colors hover:bg-[#ff5c00]"
             >
               Book appoinment
             </button>

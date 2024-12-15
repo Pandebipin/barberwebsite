@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import BlogpostSlice from "./BlogpostSlice";
 import UserdataSlice from "./UserdataSlice";
 import DataSlice from "./DataSlice";
+import AuthSliceReducer from "./AuthSlice";
 const persistConfig = {
   key: "root",
   storage,
@@ -17,6 +18,7 @@ const store = configureStore({
     blog: persistedReducer,
     data: UserdataSlice,
     AllData: DataSlice,
+    isAuth: AuthSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

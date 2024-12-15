@@ -34,12 +34,14 @@ function AppointmentSecond() {
 
   const Submit = (e) => {
     e.preventDefault();
-    if (email && secondname && firstname && number && time) {
+    if (email && secondname && firstname && number && timing) {
       dispatch(
         addData({ secondname, firstname, number, time: time[0], timing })
       );
 
       dispatch(AddAlldata({ id: haircut, timeslots: timing }));
+
+      alert("sumit succeslly ");
     } else {
       alert("please fill the form essential !");
     }
@@ -52,9 +54,9 @@ function AppointmentSecond() {
   // console.log(selectedHaircut.timeslots);
 
   const bookslots = selectedHaircut?.timeslots;
-  console.log(bookslots);
+  // console.log(bookslots);
 
-  console.log("Fetched data from Redux:", data2);
+  // console.log("Fetched data from Redux:", data2);
 
   //1:2  2 xa vane useparams bata aayeko index lai compare garne 2=2 -disabled garne(only for haircut1)
   //2:3  3 xa vane useparams bata aayeko index lai compare garne 3=3 -disabled garne(only for haircut2)
@@ -88,6 +90,7 @@ function AppointmentSecond() {
 
             <div className="relative z-0 w-full mb-5 group">
               <input
+                type="number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
                 name="number"
@@ -161,9 +164,9 @@ function AppointmentSecond() {
             {filter.length > 0 ? (
               filter[0].timeSlots.map((slot, ind) => {
                 const isDisabled = bookslots === ind;
-                if (isDisabled) {
-                  console.log("truee", isDisabled);
-                }
+                // if (isDisabled) {
+                //   // console.log("truee", isDisabled);
+                // }
                 return (
                   <button
                     key={ind}

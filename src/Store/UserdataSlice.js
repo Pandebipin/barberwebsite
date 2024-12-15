@@ -62,7 +62,7 @@ const UserdataSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(addData.fulfilled, (state, action) => {
-        console.log("data added:", action.payload);
+        // console.log("data added:", action.payload);
         state.data.push(action.payload);
       });
   },

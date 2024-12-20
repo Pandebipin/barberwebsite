@@ -14,6 +14,7 @@ function History() {
       </div>
       <div className="flex flex-col md:flex-row xl:flex-col gap-6 px-2 py-8">
         <img
+          loading="lazy"
           className="max-w-[400px] md:max-w-screen-md object-cover xl:max-w-screen-xl h-[400px]"
           src="https://thebarbersonline.com/wp-content/uploads/2018/02/babers-start-1-370x564.jpg"
           alt=""

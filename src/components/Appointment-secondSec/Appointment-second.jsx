@@ -9,8 +9,6 @@ import {
   deleteId,
   fetchAlldata,
 } from "../../Store/DataSlice";
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../Firebase/firebase";
 
 function AppointmentSecond() {
   const [firstname, setFirstname] = useState("");
@@ -19,7 +17,6 @@ function AppointmentSecond() {
   const [number, setNumber] = useState("");
   const [timing, settimming] = useState(null);
   const { haircut } = useParams();
-  const [disableIndex, setdisableIndex] = useState({});
   const filter = data.haircuts.filter((hoc) => hoc.id == haircut);
   const currentHairname = filter.map((elem) => elem.name);
   const time = filter.map((elem) => elem.time);
@@ -31,12 +28,21 @@ function AppointmentSecond() {
   useEffect(() => {
     dispatch(fetchAlldata());
   }, [dispatch]);
+  const date = new Date().toDateString();
 
   const Submit = (e) => {
     e.preventDefault();
     if (email && secondname && firstname && number && timing) {
       dispatch(
-        addData({ secondname, firstname, number, time: time[0], timing })
+        addData({
+          secondname,
+          firstname,
+          number,
+          time: time[0],
+          timing,
+          date,
+          currentHairname,
+        })
       );
 
       dispatch(AddAlldata({ id: haircut, timeslots: timing }));

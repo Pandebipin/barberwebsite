@@ -26,6 +26,7 @@ function Tesimonial() {
       <div className="flex flex-col md:flex-row gap-8 w-full items-center">
         <div className="left w-[300px] sm:w-[300px] md:w-[300px] overflow-hidden rounded-lg p-2 border-orange-600 border-4 shadow-md">
           <img
+            loading="lazy"
             className="w-full h-[390px] sm:h-[400px] object-cover"
             src={images[currentIndex]}
             alt="manpic"

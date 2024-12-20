@@ -20,7 +20,8 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
 });
 
 export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { number, secondname, firstname, time, timing } = data;
+  const { number, secondname, firstname, time, timing, date, currentHairname } =
+    data;
   try {
     const firestoreref = getFirestore();
     console.log("adding data", data);
@@ -31,6 +32,8 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       number,
       time,
       timing,
+      date,
+      currentHairname,
     });
     console.log("data added", data);
 
@@ -41,6 +44,8 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       number,
       time,
       timing,
+      date,
+      currentHairname,
     };
   } catch (error) {
     throw error;
@@ -68,5 +73,6 @@ const UserdataSlice = createSlice({
   },
 });
 
+export const data = (state) => state.data.data;
 export default UserdataSlice.reducer;
 export const { deleteData } = UserdataSlice.actions;

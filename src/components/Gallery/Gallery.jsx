@@ -51,6 +51,7 @@ function Gallery() {
 
                 <div className="content-images w-full">
                   <img
+                    loading="lazy"
                     className="w-[400px]"
                     src="https://images.squarespace-cdn.com/content/v1/525637f7e4b08267e5b1ec09/1727734291254-D4ZJEFGPRKFE130G0HJY/GMBsept24-5.jpg"
                     alt=""
@@ -58,6 +59,7 @@ function Gallery() {
                 </div>
                 <div className="content-images w-full">
                   <img
+                    loading="lazy"
                     className="w-[400px]"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr2xJVMXX3pDkDfgqswoet4C4yDdj3oWxhiQ&s"
                     alt=""
@@ -65,6 +67,7 @@ function Gallery() {
                 </div>
                 <div className="content-images w-full">
                   <img
+                    loading="lazy"
                     className="w-[400px]"
                     src="https://www.mensroombarbershop.com/wp-content/uploads/2023/10/A1580-Mens-Room-Barber-Shop-HERO.jpg"
                     alt=""
@@ -72,18 +75,21 @@ function Gallery() {
                 </div>
                 <div className="content-images">
                   <img
+                    loading="lazy"
                     src="https://thumbs.dreamstime.com/b/barber-shop-graffiti-wallpaper-design-bricks-wooden-background-interior-270689352.jpg"
                     alt=""
                   />
                 </div>
                 <div className="content-images">
                   <img
+                    loading="lazy"
                     src="https://static01.nyt.com/images/2023/05/21/multimedia/00CelebrityBarbers-JP1/00CelebrityBarbers-lede-try-btcf-facebookJumbo.jpg?year=2023&h=550&w=1050&s=cc8046ed95476d8d9db706f556a06021b7e16b58cb875d97d3822b3988dcab52&k=ZQJBKqZ0VN"
                     alt=""
                   />
                 </div>
                 <div className="content-images">
                   <img
+                    loading="lazy"
                     src="https://img.freepik.com/premium-photo/young-man-barbershop-trimming-shaving_752325-15382.jpg?semt=ais_hybrid"
                     alt=""
                   />

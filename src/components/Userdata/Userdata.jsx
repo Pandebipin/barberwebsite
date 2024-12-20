@@ -44,12 +44,11 @@ function Userdata() {
       <h1 className="text-2xl font-bold text-center text-white">
         See Available Cutting Users
       </h1>
-      ;
-      {data1.map((elem) => {
-        return (
+      {data1.length > 0 ? (
+        data1.map((elem) => (
           <div
             key={elem.id}
-            className="flex justify-center items-center w-full h-auto md:gap-8"
+            className="flex justify-center items-center w-full h-auto py-4 md:gap-8"
           >
             <h1 className="text-white px-2 md:text-lg items-center capitalize">
               {elem.firstname} {elem.secondname}
@@ -72,8 +71,12 @@ function Userdata() {
               </button>
             </div>
           </div>
-        );
-      })}
+        ))
+      ) : (
+        <p className="text-xl text-white text-center capitalize py-4 mt-6">
+          No Users found
+        </p>
+      )}
     </div>
   );
 }

@@ -55,7 +55,7 @@ function Login() {
             >
               <div>
                 <h1 className="text-sm p-1 text-red-400">
-                  {error && <p>Invalid email format</p>}
+                  {error && <p>Invalid email format or password</p>}
                 </h1>
                 <label
                   for="email"

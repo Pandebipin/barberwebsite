@@ -1,6 +1,9 @@
 import React from "react";
 
 function Contact() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="md:h-screen mx-auto p-3">
       <h1 className="text-xl text-white text-center py-6">Contact Us</h1>
@@ -17,7 +20,11 @@ function Contact() {
         </div>
 
         <div className="form">
-          <form action="" className="md:max-w-md max-w-xs mx-auto">
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            className="md:max-w-md max-w-xs mx-auto"
+          >
             <div className="relative mb-5">
               <input
                 type="email"
@@ -59,6 +66,7 @@ function Contact() {
                 className="block bg-transparent border-gray-700 border-2 text-white"
               />
             </div>
+
             <div className="but">
               <button
                 type="submit"
@@ -66,6 +74,19 @@ function Contact() {
               >
                 Submit
               </button>
+
+              <div className="text-center py-4">
+                <h1 className="text-xl text-white text-center mb-1">Or</h1>
+                <button
+                  type="button"
+                  className="text-white mb-3 bg-blue-700 text-center px-6 py-2 rounded-md hover:bg-blue-800 transition-all"
+                  onClick={() =>
+                    (window.location.href = "mailto:bp9777643@email.com")
+                  }
+                >
+                  Direct with Email
+                </button>
+              </div>
             </div>
           </form>
         </div>

@@ -5,15 +5,16 @@ import About from "../../components/Aboutus/About";
 import Button from "../../components/Button/Button";
 import Services from "../../components/Services/Services";
 import Tesimonial from "../../components/Testimonial/Tesimonial";
-import Addblog from "../../components/Addblog";
+// import Addblog from "../../components/Addblog";
 import BlogPost from "../../components/Blogspost/BlogPost";
 import Gallery from "../../components/Gallery/Gallery";
 import Modal from "../../components/Model-offer/Modal";
 import { Link } from "react-router-dom";
 import { Box, Modal as Modal2 } from "@mui/material";
+import NepaliCalendar from "../../components/BookAppointment";
+import AdminDashboard from "../AdminDashboard/AdminDashboard";
 
 function Home() {
-  const [isOpen, setisOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -62,7 +63,7 @@ function Home() {
           </div>
 
           <div className="buttons flex gap-6 items-center">
-            <Link to={"/appointment"}>
+            <Link to={"/BookAppointment"}>
               <Button name={"Get Started"} />
             </Link>
             <button

@@ -9,17 +9,20 @@ import store, { persistor } from "./Store/store.js";
 import Signup from "./pages/Signup/Signup.jsx";
 import Login from "./pages/Login/Login.jsx";
 
-// Lazy load components
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const BlogsinglePost = lazy(() =>
   import("./components/BlogsinglePost/BlogsinglePost.jsx")
 );
-const AppointmentFirst = lazy(() =>
-  import("./components/Appointment-firstsec/AppointmentFirst.jsx")
+// const AppointmentFirst = lazy(() =>
+//   import("./components/Appointment-firstsec/AppointmentFirst.jsx")
+// );
+// const AppointmentSecond = lazy(() =>
+//   import("./components/Appointment-secondSec/Appointment-second.jsx")
+// );
+const AdminDashboard = lazy(() =>
+  import("./pages/AdminDashboard/AdminDashboard.jsx")
 );
-const AppointmentSecond = lazy(() =>
-  import("./components/Appointment-secondSec/Appointment-second.jsx")
-);
+const BookAppointment = lazy(() => import("./components/BookAppointment.jsx"));
 const Userdata = lazy(() => import("./components/Userdata/Userdata.jsx"));
 const Pricing = lazy(() => import("./components/Pricing/Pricing.jsx"));
 const Services = lazy(() => import("./components/Services/Services.jsx"));
@@ -41,13 +44,13 @@ const router = createBrowserRouter([
         path: "blog/:id",
         element: <BlogsinglePost />,
       },
+      // {
+      //   path: "/appointment",
+      //   element: <AppointmentFirst />,
+      // },
       {
-        path: "/appointment",
-        element: <AppointmentFirst />,
-      },
-      {
-        path: "/appointmentcalendar/:haircut",
-        element: <AppointmentSecond />,
+        path: "/BookAppointment",
+        element: <BookAppointment />,
       },
       {
         path: "userAvailable",
@@ -80,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/Admindashboard",
+        element: <AdminDashboard />,
       },
     ],
   },

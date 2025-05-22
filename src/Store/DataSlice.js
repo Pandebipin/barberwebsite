@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../Firebase/firebase";
 
 const initialState = {
@@ -11,7 +18,7 @@ export const fetchAlldata = createAsyncThunk("Alldata/fetchdata", async () => {
     const docref = collection(db, "Alldata");
     const docSnap = await getDocs(docref);
     const data = docSnap.docs.map((doc) => ({
-      id: doc.id,
+      docId: doc.id,
       ...doc.data(),
     }));
     return data;
@@ -24,19 +31,49 @@ export const fetchAlldata = createAsyncThunk("Alldata/fetchdata", async () => {
 export const AddAlldata = createAsyncThunk(
   "addAlldata/alldata",
   async (data) => {
-    const { id, timeslots } = data;
+    const { date, timeSlot, service, name, email, phone, notes, status } = data;
     try {
       const firestoreref = getFirestore();
       const docref = await addDoc(collection(firestoreref, "Alldata"), {
-        id,
-        timeslots,
+        date,
+        timeSlot,
+        service,
+        name,
+        email,
+        phone,
+        notes,
+        status,
       });
-      return { id, timeslots };
+      return {
+        docId: docref.id,
+        date,
+        timeSlot,
+        service,
+        name,
+        email,
+        phone,
+        notes,
+        status,
+      };
     } catch (error) {
       throw error;
     }
   }
 );
+
+export const updateStatus = createAsyncThunk(
+  "data/updateStatus",
+  async ({ id, newStatus }, thunkAPI) => {
+    try {
+      const docRef = doc(db, "Alldata", id);
+      await updateDoc(docRef, { status: newStatus });
+      return { id, newStatus };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const DataSlice = createSlice({
   name: "Alldata",
   initialState,
@@ -54,7 +91,18 @@ const DataSlice = createSlice({
     });
     builder.addCase(AddAlldata.fulfilled, (state, action) => {
       state.Alldata.push(action.payload);
-      // console.log("data added", action.payload);
+      console.log("data added", action.payload);
+    });
+    builder.addCase(updateStatus.fulfilled, (state, action) => {
+      const { id, newStatus } = action.payload;
+      const index = state.Alldata.findIndex((item) => item.docId === id);
+      console.log(index);
+      if (index !== -1) {
+        state.Alldata[index].status = newStatus;
+      }
+    });
+    builder.addCase(updateStatus.rejected, (state, action) => {
+      console.error("❌ Failed to update status:", action.payload);
     });
   },
 });

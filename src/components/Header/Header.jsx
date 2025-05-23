@@ -80,7 +80,7 @@ const Header = () => {
               </li>
             </Link>
             <Link
-              to={"/Useravailable"}
+              to={"/userAvailable"}
               className="text-2xl md:text-lg text-gray-200 cursor-pointer"
             >
               {" "}
@@ -119,15 +119,15 @@ const Header = () => {
             >
               Book appoinment
             </button>
-            {!data ? (
+            {data ? (
               <Link to={"/Myprofile"} className=" hidden md:block">
+                <AccountCircleIcon className="text-gray-200 text-xl" />
+              </Link>
+            ) : (
+              <Link to={"/login"} className=" hidden md:block">
                 <button className="text-xl bg-blue-600 text-white rounded-lg md:px-6 py-3">
                   Login
                 </button>
-              </Link>
-            ) : (
-              <Link to={"/Myprofile"} className=" hidden md:block">
-                <AccountCircleIcon className="text-gray-200 text-xl" />
               </Link>
             )}
           </div>

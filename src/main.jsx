@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         element: <BookAppointment />,
       },
       {
-        path: "userAvailable",
+        path: "/userAvailable",
         element: <Userdata />,
       },
       {

@@ -7,7 +7,7 @@ const initialState = {
 };
 export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
   try {
-    const docref = collection(db, "Userdata");
+    const docref = collection(db, "userdata");
     const docSnap = await getDocs(docref);
     const data = docSnap.docs.map((doc) => ({
       id: doc.id,
@@ -20,32 +20,27 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
 });
 
 export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { number, secondname, firstname, time, timing, date, currentHairname } =
-    data;
+  const { name, phone, timeSlot, date, service } = data;
   try {
     const firestoreref = getFirestore();
     console.log("adding data", data);
 
-    const docref = await addDoc(collection(firestoreref, "Userdata"), {
-      firstname,
-      secondname,
-      number,
-      time,
-      timing,
+    const docref = await addDoc(collection(firestoreref, "userdata"), {
+      name,
+      phone,
+      timeSlot,
       date,
-      currentHairname,
+      service,
     });
     console.log("data added", data);
 
     return {
       id: docref.id,
-      firstname,
-      secondname,
-      number,
-      time,
-      timing,
+      name,
+      phone,
+      timeSlot,
       date,
-      currentHairname,
+      service,
     };
   } catch (error) {
     throw error;

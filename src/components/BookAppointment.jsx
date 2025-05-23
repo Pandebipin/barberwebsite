@@ -14,6 +14,7 @@ import {
 import BookingConfirmation from "./BookingConfirm/BookingConfirmation";
 import { useDispatch } from "react-redux";
 import { AddAlldata } from "../Store/DataSlice";
+import { addData } from "../Store/UserdataSlice";
 
 const timeSlots = [
   "9:00 AM",
@@ -86,6 +87,15 @@ export default function BookAppointment() {
         status,
       })
     );
+    dispatch(
+      addData({
+        name,
+        phone,
+        timeSlot,
+        date,
+        service,
+      })
+    );
     // const existing = JSON.parse(localStorage.getItem("appointments") || "[]");
     // localStorage.setItem(
     //   "appointments",
@@ -93,7 +103,7 @@ export default function BookAppointment() {
     // );
 
     setIsComplete(true);
-    console.log(appointment.id);
+    // console.log(appointment.id);
   };
   const resetForm = () => {
     setStep(1);
@@ -126,7 +136,7 @@ export default function BookAppointment() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-gray-300 shadow-2xl rounded-xl mt-10 space-y-6 "
+      className="max-w-md mx-auto p-6 bg-gray-200 shadow-2xl rounded-xl mt-10 space-y-6 "
     >
       <Typography variant="h5" className="text-center text-gray-700">
         Book Your Appointment
@@ -144,21 +154,25 @@ export default function BookAppointment() {
           />
 
           <FormControl fullWidth>
-            <FormLabel className="text-gray-700">Choose Time Slot</FormLabel>
-            <Select
-              value={timeSlot}
-              onChange={(e) => setTimeSlot(e.target.value)}
-              displayEmpty
-            >
-              <MenuItem value="" className="text-gray-700">
-                -- Select Time --
-              </MenuItem>
+            <FormLabel className="text-gray-700 mb-2">
+              Choose Time Slot
+            </FormLabel>
+            <div className="grid grid-cols-3 gap-3">
               {timeSlots.map((time, i) => (
-                <MenuItem key={i} value={time}>
+                <button
+                  type="button"
+                  key={i}
+                  onClick={() => setTimeSlot(time)}
+                  className={`py-2 px-4 rounded-md border transition-all duration-200 ${
+                    timeSlot === time
+                      ? "bg-blue-600 text-white border-blue-600"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-blue-100 hover:border-blue-400"
+                  }`}
+                >
                   {time}
-                </MenuItem>
+                </button>
               ))}
-            </Select>
+            </div>
           </FormControl>
         </>
       )}

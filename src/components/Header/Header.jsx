@@ -95,12 +95,19 @@ const Header = () => {
             </Link>
             <br />
 
-            <div className="flex flex-col gap-3">
-              <Link to={"/Myprofile"} className="mt-4 lg:hidden">
-                <button className="text-xl bg-blue-600 text-white rounded-lg mt-4 p-2">
-                  Profile
-                </button>
-              </Link>
+            <div className="flex flex-col mt-2 gap-3">
+              {data ? (
+                <Link to={"/Myprofile"} className=" block md:hidden">
+                  <AccountCircleIcon className="text-gray-200 text-xl" />{" "}
+                  <span className="text-xl">profile</span>
+                </Link>
+              ) : (
+                <Link to={"/login"} className=" block md:hidden">
+                  <button className="text-xl bg-blue-600 text-white rounded-lg md:px-6 py-3">
+                    Login
+                  </button>
+                </Link>
+              )}
               <Link className="lg:hidden">
                 <button
                   onClick={navigation}

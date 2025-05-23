@@ -2,18 +2,29 @@ import React, { useEffect, useState } from "react";
 import { data, fetchdata } from "../../Store/UserdataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Signup from "../../pages/Signup/Signup";
+import { getAuth } from "firebase/auth";
+
 function Myprofile() {
   const [points, setPoints] = useState(0);
   const [buttonIndex, setbuttonIndex] = useState(0);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchdata());
   }, [dispatch]);
   const Alldata = useSelector(data);
-  console.log(Alldata);
   const isAuth = useSelector((state) => state.isAuth.isAuth);
-  console.log(isAuth);
+  // console.log(isAuth);
 
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const currentEmail = currentUser?.email;
+  console.log(currentEmail);
+  const userAppointments = Alldata.filter(
+    (item) => item.email === currentEmail
+  );
+  console.log(userAppointments.length);
+  console.log(Alldata);
   return (
     <div className="w-full min-h-screen bg-gray-900 text-gray-100 p-4 flex items-center justify-center">
       {isAuth ? (
@@ -91,26 +102,19 @@ function Myprofile() {
             </div>
           ) : (
             <div>
-              {Alldata &&
-                (Alldata.length > 0 ? (
-                  Alldata.map((elem, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-700 rounded-md p-3 flex justify-between items-center mb-2"
-                    >
-                      <span className="text-md capitalize text-gray-400">
-                        {elem.currentHairname.map(
-                          (currenthairname) => currenthairname
-                        )}
-                      </span>
-                      <span className="text-sm text-gray-400">{elem.date}</span>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-400 text-center">
-                    No data available.
-                  </p>
-                ))}
+              {userAppointments.length >= 0 ? (
+                userAppointments.map((elem, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-6 px-1 justify-between py-1"
+                  >
+                    <span>{elem.service}</span>
+                    <span>{elem.date}</span>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-400 text-center">No data available.</p>
+              )}
             </div>
           )}
         </div>

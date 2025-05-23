@@ -94,6 +94,7 @@ export default function BookAppointment() {
         timeSlot,
         date,
         service,
+        email,
       })
     );
     // const existing = JSON.parse(localStorage.getItem("appointments") || "[]");

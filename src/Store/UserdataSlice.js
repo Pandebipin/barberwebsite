@@ -20,7 +20,7 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
 });
 
 export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { name, phone, timeSlot, date, service } = data;
+  const { name, email, phone, timeSlot, date, service } = data;
   try {
     const firestoreref = getFirestore();
     console.log("adding data", data);
@@ -31,6 +31,7 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       timeSlot,
       date,
       service,
+      email,
     });
     console.log("data added", data);
 
@@ -41,6 +42,7 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       timeSlot,
       date,
       service,
+      email,
     };
   } catch (error) {
     throw error;

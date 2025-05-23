@@ -17,12 +17,12 @@ function Gallery() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="w-full lg:max-w-screen-2xl max-w-[18rem] py-4 mx-auto">
+    <div className="w-full lg:max-w-screen-2xl max-w-[20rem] py-4 mx-auto">
       <div className="content pb-6 text-center">
         <h1 className="text-white text-xl ">Our Gallery</h1>
         <span className="text-2xl text-white">Enjoy our awesome snapshot</span>
       </div>
-      <div className="image h-[50vh] w-full">
+      <div className="image h-[35vh] md:h-[50vh] w-full">
         <div>
           <div
             className="w-full h-[60vh] opacity-5 bg-white"

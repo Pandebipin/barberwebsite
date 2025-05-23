@@ -63,13 +63,13 @@ export const AddAlldata = createAsyncThunk(
 
 export const updateStatus = createAsyncThunk(
   "data/updateStatus",
-  async ({ id, newStatus }, thunkAPI) => {
+  async ({ id, newStatus }) => {
     try {
       const docRef = doc(db, "Alldata", id);
       await updateDoc(docRef, { status: newStatus });
       return { id, newStatus };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return error.message;
     }
   }
 );

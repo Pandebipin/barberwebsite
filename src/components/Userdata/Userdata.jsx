@@ -21,13 +21,13 @@ function Userdata() {
         data1.map((elem) => (
           <div
             key={elem.id}
-            className="flex justify-center items-center w-full h-auto py-4 md:gap-8"
+            className="flex justify-center items-center w-full h-auto py-2 md:gap-8"
           >
             <h1 className="text-white px-2 md:text-lg items-center capitalize">
               {elem.name}
             </h1>
-            <span className="text-white p-2">{elem.timeSlot}</span>
-            <span className="text-white p-2">{elem.service}</span>
+            <span className="text-white md:p-2">{elem.timeSlot}</span>
+            <span className="text-white md:p-2">{elem.service}</span>
           </div>
         ))
       ) : (

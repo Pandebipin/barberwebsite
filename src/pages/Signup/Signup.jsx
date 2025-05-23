@@ -86,7 +86,7 @@ function Signup() {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    if (error) seterror("");
+                    if (error) seterror("invalid email format");
                   }}
                   type="email"
                   name="email"
@@ -114,7 +114,7 @@ function Signup() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
                 />
-                {error2 && <p className="text-sm p-1 text-red-400">{error}</p>}
+                {error2 && <p className="text-sm p-1 text-red-400">{error2}</p>}
               </div>
 
               <div className="flex items-start">

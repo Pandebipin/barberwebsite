@@ -86,6 +86,7 @@ const Header = () => {
               {" "}
               See Users
             </Link>
+            <br />
             <Link
               to={"/Admindashboard"}
               className="text-2xl md:text-lg text-gray-200 cursor-pointer"
@@ -103,7 +104,7 @@ const Header = () => {
                 </Link>
               ) : (
                 <Link to={"/login"} className=" block md:hidden">
-                  <button className="text-xl bg-blue-600 text-white rounded-lg md:px-6 py-3">
+                  <button className="text-xl bg-blue-600 text-white rounded-lg px-6 py-3">
                     Login
                   </button>
                 </Link>

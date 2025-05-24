@@ -13,7 +13,6 @@ function AdminDashboard() {
 
   const navigation = () => {
     navigate("/");
-    console.log("kajs");
   };
   useEffect(() => {
     dispatch(fetchAlldata());
@@ -147,10 +146,7 @@ function AdminDashboard() {
         {state === 1 && (
           <>
             {data?.filter((elem) => elem.status === "pending").length === 0 ? (
-              <div
-                key={elem.id}
-                className="bg-[#FFFFFF] h-[200px] w-full flex flex-col py-4 rounded-md border border-gray-200 justify-center items-center"
-              >
+              <div className="bg-[#FFFFFF] h-[200px] w-full flex flex-col py-4 rounded-md border border-gray-200 justify-center items-center">
                 <CalendarTodayIcon className="text-gray-500 mb-2" />
 
                 <h1 className="text-lg text-gray-800 capitalize">

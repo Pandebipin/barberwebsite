@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <nav className="flex items-center justify-around gap-2 py-4 px-4 md:px-8">
+        <nav className="flex items-center justify-between gap-2 py-4 px-4 md:px-8">
           <div className="logo">
             <img
               onClick={WayToHome}
@@ -27,29 +27,44 @@ const Header = () => {
             />
           </div>
 
-          <button
-            className="lg:hidden block text-white"
-            onClick={() => setismobilemenuopen(!ismobilemenuopen)}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="flex lg:hidden md:gap-4 px-2 justify-center items-center">
+            <button
+              className="lg:hidden block text-white"
+              onClick={() => setismobilemenuopen(!ismobilemenuopen)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={
-                  ismobilemenuopen
-                    ? "M6 18L18 6M6 6l12 12"
-                    : "M4 6h16M4 12h16M4 18h16"
-                }
-              ></path>
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d={
+                    ismobilemenuopen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
+                ></path>
+              </svg>
+            </button>
+
+            {data ? (
+              <Link to={"/Myprofile"} className=" hidden md:block lg:hidden">
+                <AccountCircleIcon className="text-gray-200 text-xl" />
+              </Link>
+            ) : (
+              <Link to={"/login"} className=" hidden md:block lg:hidden">
+                <button className="text-xl bg-blue-600 text-white rounded-lg md:px-6 py-3">
+                  Login
+                </button>
+              </Link>
+            )}
+          </div>
+
           <ul
             className={`flex-col justify-center gap-10 menu mt-2 w-[80vw] bg-[#333] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
               ismobilemenuopen
@@ -120,7 +135,7 @@ const Header = () => {
             </div>
           </ul>
 
-          <div className="hidden md:flex md:gap-4 justify-center items-center">
+          <div className="hidden lg:flex lg:gap-4 justify-center items-center">
             <button
               onClick={navigation}
               className="pr-1 hidden lg:block text-center bg-gradient-to-r from-[#e27c12] via-[#e27c12] via-35% to-[#ff5c00] py-2 text-[14px] lg:text-lg text-white lg:p-4 px-2 rounded-full cursor-pointer transition-colors hover:bg-[#ff5c00]"
@@ -128,12 +143,12 @@ const Header = () => {
               Book appoinment
             </button>
             {data ? (
-              <Link to={"/Myprofile"} className=" hidden md:block">
+              <Link to={"/Myprofile"} className=" hidden lg:block">
                 <AccountCircleIcon className="text-gray-200 text-xl" />
               </Link>
             ) : (
-              <Link to={"/login"} className=" hidden md:block">
-                <button className="text-xl bg-blue-600 text-white rounded-lg md:px-6 py-3">
+              <Link to={"/login"} className=" hidden lg:block">
+                <button className="text-xl bg-blue-600 text-white rounded-lg lg:px-6 py-3">
                   Login
                 </button>
               </Link>

@@ -33,12 +33,12 @@ function Tesimonial() {
           />
         </div>
         <div className="flex-grow">
-          <div className="right text-white bg-[#17172B] rounded-sm h-[300px] p-6 flex flex-col gap-4">
+          <div className="right text-white bg-[#17172B] rounded-sm h-[300px] p-4 flex flex-col gap-4">
             <h1 className="text-white lg:w-[1.4rem] capitalize text-nowrap">
               {title[currentIndex]}
             </h1>
             <span className="text-white font-sans font-[300]">customer</span>
-            <p className="w-[270px] lg:w-[450px] text-sm">
+            <p className="w-[270px] lg:w-[450px] text-sm md:text-md">
               {desc[currentIndex]}
             </p>
           </div>

@@ -29,7 +29,7 @@ function Home() {
   };
   return (
     <>
-      <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[130vh] xl:h-[130vh] relative">
+      <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[80vh] xl:h-[130vh] relative">
         <div className="left-container flex flex-col gap-10 absolute top-[12%] left-[12%] lg:top-[17%]">
           <div className="heading-content">
             <h2 className="font-bold font-montserrat text-white text-[2rem] sm:text-[3rem] lg:text-[4rem] flex flex-col gap-0 space-y-0 leading-tight">

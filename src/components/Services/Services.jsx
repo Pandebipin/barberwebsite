@@ -13,7 +13,7 @@ function Services() {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center px-4 py-4 items-center gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto px-4 py-4 items-center gap-5">
         <Card title={"Fade cut"} />
         <Card title={"Beard Grooming"} />
         <Card title={"Kid's Haircut"} />

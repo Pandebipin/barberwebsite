@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -15,6 +15,7 @@ import BookingConfirmation from "./BookingConfirm/BookingConfirmation";
 import { useDispatch } from "react-redux";
 import { AddAlldata } from "../Store/DataSlice";
 import { addData } from "../Store/UserdataSlice";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const timeSlots = [
   "9:00 AM",
@@ -66,14 +67,23 @@ export default function BookAppointment() {
     }
     setStep(step + 1);
   };
-
-  const handleSubmit = (e) => {
+  const auth = getAuth();
+  useEffect(() => {
+    const data = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setEmail(user.email);
+      }
+    });
+    return () => data();
+  }, []);
+  var handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email || !phone) {
+    if (!name || !phone) {
       alert("Please fill out all contact fields.");
       return;
     }
 
+    console.log(auth);
     dispatch(
       AddAlldata({
         id: Date.now(),
@@ -97,11 +107,6 @@ export default function BookAppointment() {
         email,
       })
     );
-    // const existing = JSON.parse(localStorage.getItem("appointments") || "[]");
-    // localStorage.setItem(
-    //   "appointments",
-    //   JSON.stringify([...existing, appointment])
-    // );
 
     setIsComplete(true);
     // console.log(appointment.id);
@@ -205,13 +210,7 @@ export default function BookAppointment() {
             onChange={(e) => setName(e.target.value)}
             fullWidth
           />
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-          />
+          <TextField label="Email" type="email" value={email} fullWidth />
           <TextField
             label="Phone"
             value={phone}

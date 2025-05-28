@@ -19,7 +19,7 @@ function Myprofile() {
   const auth = getAuth();
   const currentUser = auth.currentUser;
   const currentEmail = currentUser?.email;
-  console.log(currentEmail);
+
   const userAppointments = Alldata.filter(
     (item) => item.email === currentEmail
   );

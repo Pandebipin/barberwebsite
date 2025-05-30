@@ -67,6 +67,7 @@ export default function BookAppointment() {
     }
     setStep(step + 1);
   };
+
   const auth = getAuth();
   useEffect(() => {
     const data = onAuthStateChanged(auth, (user) => {
@@ -76,6 +77,7 @@ export default function BookAppointment() {
     });
     return () => data();
   }, []);
+
   var handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !phone) {
@@ -83,7 +85,7 @@ export default function BookAppointment() {
       return;
     }
 
-    console.log(auth);
+    // console.log(auth);
     dispatch(
       AddAlldata({
         id: Date.now(),

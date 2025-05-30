@@ -66,9 +66,9 @@ const Header = () => {
           </div>
 
           <ul
-            className={`flex-col justify-center gap-10 menu mt-2 w-[80vw] bg-[#333] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
+            className={`flex-col justify-center gap-10 menu mt-2 w-full bg-[#333] lg:flex-row  bg-opacity-90 lg:flex lg:gap-8 items-center text-white absolute lg:static top-[10%] left-0 lg:w-auto z-20 lg:bg-transparent lg:top-auto lg:left-auto lg:p-0 p-4 transition-transform duration-300 ease-in-out transform ${
               ismobilemenuopen
-                ? "translate-x-0 h-[66vh] py-2 montaga"
+                ? "translate-x-0  py-6 montaga"
                 : "-translate-x-full lg:translate-x-0"
             }`}
           >
@@ -124,11 +124,8 @@ const Header = () => {
                   </button>
                 </Link>
               )}
-              <Link className="lg:hidden">
-                <button
-                  onClick={navigation}
-                  className="bg-orange-600 text-white rounded-lg p-2"
-                >
+              <Link to={"/BookAppointment"} className="lg:hidden">
+                <button className="bg-orange-600 text-white rounded-lg p-2">
                   Book appoinment
                 </button>
               </Link>

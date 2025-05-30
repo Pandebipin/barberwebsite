@@ -4,6 +4,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { useDispatch, useSelector } from "react-redux";
 import { Alldata, fetchAlldata } from "../../Store/DataSlice";
 import { useNavigate } from "react-router-dom";
+import DataGraph from "../../components/DataGraph/DataGraph";
 
 function AdminDashboard() {
   const [state, setState] = useState(0);
@@ -19,6 +20,16 @@ function AdminDashboard() {
   }, [dispatch]);
 
   const data = useSelector(Alldata);
+  const date = new Date();
+  const currentMonth = date.getMonth();
+  const currentYear = date.getYear();
+
+  const monthlyAppointments = data.map((item) => {
+    const date = new Date(item.date);
+    return date.getMonth() == currentMonth && date.getYear() === currentYear;
+  });
+
+  const monthlyCount = monthlyAppointments.length;
 
   const totalCount = data.length;
   const approvedCount = data.filter(
@@ -26,8 +37,6 @@ function AdminDashboard() {
   ).length;
   const pendingCount = data.filter((item) => item.status === "pending").length;
 
-  // const data2 = data.map((data) => data.id);
-  // console.log(data2);
   return (
     <div className="min-h-[100vh] bg-[#F9FAFB] py-2">
       <div className="first-shell flex justify-between items-center ">
@@ -79,6 +88,11 @@ function AdminDashboard() {
           </div>
         </div>
 
+        {/* //datagraph */}
+        <div className="py-4">
+          <DataGraph monthlyCount={monthlyCount} />
+        </div>
+
         <div className="flex space-x-3">
           <button className="px-4 py-2 text-gray-900 font-semibold rounded-md text-sm">
             Appointments
@@ -87,9 +101,7 @@ function AdminDashboard() {
             Settings
           </button>
         </div>
-
         <h1 className="text-3xl font-bold px-2">Appointments</h1>
-
         <div className="slide bg-[#F5F5F5] flex gap-3 rounded-md w-full h-[40px] p-1 shadow-sm border border-gray-200">
           <div
             onClick={() => setState(0)}
@@ -142,7 +154,6 @@ function AdminDashboard() {
             })}
           </div>
         )}
-
         {state === 1 && (
           <>
             {data?.filter((elem) => elem.status === "pending").length === 0 ? (
@@ -177,7 +188,6 @@ function AdminDashboard() {
             )}
           </>
         )}
-
         {state === 2 && (
           <>
             {data?.filter((elem) => elem.status === "approved").length === 0 ? (

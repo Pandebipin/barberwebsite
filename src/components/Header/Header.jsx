@@ -118,14 +118,6 @@ const Header = () => {
               See Users
             </Link>
             <br />
-            <Link
-              to={"/Admindashboard"}
-              className="text-2xl md:text-lg text-gray-200 cursor-pointer"
-            >
-              {" "}
-              Admin
-            </Link>
-            <br />
 
             <div className="flex flex-col mt-2 gap-3">
               {data ? (

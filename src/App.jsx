@@ -19,7 +19,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       dispatch(CheckAuth(!!currentUser));
-      console.log(currentUser);
+      // console.log(currentUser);
       setLoading(false);
     });
 
@@ -48,8 +48,12 @@ function App() {
 
   return (
     <div className="bg-[#050514]">
-      {CurrentEmail === import.meta.env.VITE_ADMIN_KEY ? (
-        <AdminLayout />
+      {user ? (
+        CurrentEmail === import.meta.env.VITE_ADMIN_KEY ? (
+          <AdminLayout />
+        ) : (
+          <UserLayout />
+        )
       ) : (
         <UserLayout />
       )}

@@ -13,22 +13,23 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const auth = getAuth();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(user);
-      dispatch(CheckAuth(currentUser ? true : false));
+      dispatch(CheckAuth(!!currentUser));
+      console.log(currentUser);
       setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
-  const auth = getAuth();
-  const CurrentUser = auth.currentUser;
-  const CurrentEmail = CurrentUser?.email;
-  console.log(CurrentEmail);
+  }, [dispatch, auth]);
+
+  const CurrentEmail = user?.email;
+
   if (loading) return <p className="text-white text-center mt-4">Loading...</p>;
+
   const UserLayout = () => (
     <div>
       <Header />
@@ -44,16 +45,13 @@ function App() {
       <Footer />
     </div>
   );
+
   return (
     <div className="bg-[#050514]">
       {CurrentEmail === import.meta.env.VITE_ADMIN_KEY ? (
-        <div>
-          <AdminLayout />
-        </div>
+        <AdminLayout />
       ) : (
-        <div>
-          <UserLayout />
-        </div>
+        <UserLayout />
       )}
     </div>
   );

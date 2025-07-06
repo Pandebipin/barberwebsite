@@ -27,7 +27,7 @@ function Signup() {
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/login");
+      // navigate("/login");
     } catch (error) {
       seterror(error.message);
     }

@@ -97,7 +97,13 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center text-2xl text-red-400">
+              Loading...
+            </div>
+          }
+        >
           <RouterProvider router={router} />
         </Suspense>
       </PersistGate>

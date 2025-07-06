@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alldata, fetchAlldata } from "../../Store/DataSlice";
 import { useNavigate } from "react-router-dom";
 import DataGraph from "../../components/DataGraph/DataGraph";
-
+import DashboardData from "../../components/DashboardUserdata/DashboardData";
 function AdminDashboard() {
   const [state, setState] = useState(0);
   const dispatch = useDispatch();
@@ -138,7 +138,7 @@ function AdminDashboard() {
           </div>
         </div>
         {state == 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="hidden grid-cols-1 md:grid-cols-2 gap-6">
             {data?.map((elem) => {
               return (
                 <AdminCard
@@ -223,6 +223,8 @@ function AdminDashboard() {
           </>
         )}
       </div>
+
+      {/* <DashboardData /> */}
     </div>
   );
 }

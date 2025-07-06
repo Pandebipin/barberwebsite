@@ -14,7 +14,7 @@ function Myprofile() {
   }, [dispatch]);
   const Alldata = useSelector(data);
   const isAuth = useSelector((state) => state.isAuth.isAuth);
-  // console.log(isAuth);
+  console.log(isAuth);
 
   const auth = getAuth();
   const currentUser = auth.currentUser;

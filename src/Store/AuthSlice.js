@@ -12,8 +12,12 @@ const AuthSlice = createSlice({
       // console.log("auth", action.payload);
       state.isAuth = action.payload;
     },
+    Logout: (state, action) => {
+      state.isAuth = false;
+    },
   },
 });
 
 export const { CheckAuth } = AuthSlice.actions;
+export const { Logout } = AuthSlice.actions;
 export default AuthSlice.reducer;

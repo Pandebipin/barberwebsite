@@ -1,18 +1,34 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "../../Store/AuthSlice";
+import { auth } from "../../Firebase/firebase";
+import { signOut } from "firebase/auth";
+
 const Header = () => {
   const [ismobilemenuopen, setismobilemenuopen] = useState();
   const navigate = useNavigate();
   const navigation = () => {
     navigate("/BookAppointment");
   };
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.isAuth.isAuth);
-  console.log(data);
+  // console.log(data);
+
   const WayToHome = () => {
     navigate("/");
     window.scrollTo(0, 0);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      dispatch(Logout());
+      navigate("/login");
+    } catch (error) {
+      console.log("the error is ", error.message);
+    }
   };
   return (
     <>
@@ -113,17 +129,26 @@ const Header = () => {
 
             <div className="flex flex-col mt-2 gap-3">
               {data ? (
-                <Link to={"/Myprofile"} className=" block md:hidden">
-                  <AccountCircleIcon className="text-gray-200 text-xl" />{" "}
-                  <span className="text-xl">profile</span>
-                </Link>
+                <>
+                  <Link to={"/Myprofile"} className="block md:hidden">
+                    <AccountCircleIcon className="text-gray-200 text-xl" />{" "}
+                    <span className="text-xl">Profile</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="text-white block md:hidden bg-red-500 px-4 py-2 rounded-lg text-sm mt-2"
+                  >
+                    Logout
+                  </button>
+                </>
               ) : (
-                <Link to={"/login"} className=" block md:hidden">
+                <Link to={"/login"} className="block md:hidden">
                   <button className="text-xl bg-blue-600 text-white rounded-lg px-6 py-3">
                     Login
                   </button>
                 </Link>
               )}
+
               <Link to={"/BookAppointment"} className="lg:hidden">
                 <button className="bg-orange-600 text-white rounded-lg p-2">
                   Book appoinment
@@ -140,11 +165,19 @@ const Header = () => {
               Book appoinment
             </button>
             {data ? (
-              <Link to={"/Myprofile"} className=" hidden lg:block">
-                <AccountCircleIcon className="text-gray-200 text-xl" />
-              </Link>
+              <div className="hidden lg:flex items-center gap-2">
+                <Link to={"/Myprofile"}>
+                  <AccountCircleIcon className="text-gray-200 text-xl" />
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="text-white bg-red-500 px-4 py-2 rounded-lg text-sm"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
-              <Link to={"/login"} className=" hidden lg:block">
+              <Link to={"/login"} className="hidden lg:block">
                 <button className="text-xl bg-blue-600 text-white rounded-lg lg:px-6 py-3">
                   Login
                 </button>

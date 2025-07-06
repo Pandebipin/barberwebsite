@@ -5,14 +5,11 @@ import About from "../../components/Aboutus/About";
 import Button from "../../components/Button/Button";
 import Services from "../../components/Services/Services";
 import Tesimonial from "../../components/Testimonial/Tesimonial";
-// import Addblog from "../../components/Addblog";
 import BlogPost from "../../components/Blogspost/BlogPost";
 import Gallery from "../../components/Gallery/Gallery";
 import Modal from "../../components/Model-offer/Modal";
 import { Link } from "react-router-dom";
 import { Box, Modal as Modal2 } from "@mui/material";
-import NepaliCalendar from "../../components/BookAppointment";
-import AdminDashboard from "../AdminDashboard/AdminDashboard";
 
 function Home() {
   const [open, setOpen] = useState(false);
@@ -29,7 +26,7 @@ function Home() {
   };
   return (
     <>
-      <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[80vh] xl:h-[130vh] relative">
+      <div className="bg w-full h-[84vh] sm:h-[72vh] md:h-[72vh] lg:h-[110vh] xl:h-[130vh] relative">
         <div className="left-container flex flex-col gap-10 absolute top-[12%] left-[12%] lg:top-[17%]">
           <div className="heading-content">
             <h2 className="font-bold font-montserrat text-white text-[2rem] sm:text-[3rem] lg:text-[4rem] flex flex-col gap-0 space-y-0 leading-tight">

@@ -149,6 +149,7 @@ function AdminDashboard() {
                   email={elem.email}
                   status={elem.status}
                   id={elem.docId}
+                  service={elem.service}
                 />
               );
             })}
@@ -181,6 +182,7 @@ function AdminDashboard() {
                         email={elem.email}
                         status={elem.status}
                         id={elem.docId}
+                        service={elem.service}
                       />
                     );
                   })}
@@ -215,6 +217,7 @@ function AdminDashboard() {
                         email={elem.email}
                         status={elem.status}
                         id={elem.docId}
+                        service={elem.service}
                       />
                     );
                   })}
@@ -224,7 +227,7 @@ function AdminDashboard() {
         )}
       </div>
 
-      {/* <DashboardData /> */}
+      <DashboardData />
     </div>
   );
 }

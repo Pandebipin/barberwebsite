@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../Firebase/firebase";
 
 const initialState = {
@@ -20,10 +27,10 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
 });
 
 export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { name, email, phone, timeSlot, date, service } = data;
+  const { name, email, phone, timeSlot, date, service, status } = data;
   try {
     const firestoreref = getFirestore();
-    console.log("adding data", data);
+    // console.log("adding data", data);
 
     const docref = await addDoc(collection(firestoreref, "userdata"), {
       name,
@@ -32,8 +39,9 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       date,
       service,
       email,
+      status,
     });
-    console.log("data added", data);
+    // console.log("data added", data);
 
     return {
       id: docref.id,
@@ -43,12 +51,28 @@ export const addData = createAsyncThunk("data/adddata", async (data) => {
       date,
       service,
       email,
+      status,
     };
   } catch (error) {
     throw error;
   }
 });
 
+export const UpdateStatus = createAsyncThunk(
+  "data/updateStatus",
+  async ({ id, newStatus }) => {
+    try {
+      const collId = doc(db, "userdata", id);
+      await updateDoc(collId, {
+        status: newStatus,
+      });
+      console.log(status);
+      return { id, newStatus };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 const UserdataSlice = createSlice({
   name: "data",
   initialState,
@@ -66,6 +90,14 @@ const UserdataSlice = createSlice({
       .addCase(addData.fulfilled, (state, action) => {
         // console.log("data added:", action.payload);
         state.data.push(action.payload);
+      })
+      .addCase(UpdateStatus.fulfilled, (state, action) => {
+        const { id, newStatus } = action.payload;
+        console.log(id, newStatus);
+        const data1 = state.data.find((elem) => elem.id === id);
+        if (data1) {
+          state.data.status = newStatus;
+        }
       });
   },
 });

@@ -10,6 +10,8 @@ import Gallery from "../../components/Gallery/Gallery";
 import Modal from "../../components/Model-offer/Modal";
 import { Link } from "react-router-dom";
 import { Box, Modal as Modal2 } from "@mui/material";
+import DashboardData from "../../components/DashboardUserdata/DashboardData";
+import AdminDashboard from "../AdminDashboard/AdminDashboard";
 
 function Home() {
   const [open, setOpen] = useState(false);
@@ -169,6 +171,7 @@ function Home() {
       <div className="addblog lg:pt-6">
         {/* <Addblog /> */}
         <BlogPost />
+        <AdminDashboard />
       </div>
 
       <div className="gallery">

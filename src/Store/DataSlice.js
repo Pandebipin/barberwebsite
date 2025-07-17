@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -74,15 +75,21 @@ export const updateStatus = createAsyncThunk(
   }
 );
 
+export const deleteId = createAsyncThunk("data/deleteId", async (id) => {
+  const docRef = doc(db, "Alldata", id);
+  await deleteDoc(docRef);
+  return id;
+});
+
 const DataSlice = createSlice({
   name: "Alldata",
   initialState,
   reducers: {
-    deleteId: (state, action) => {
-      state.Alldata = state.Alldata.filter(
-        (data) => data.id !== action.payload
-      );
-    },
+    // deleteId: (state, action) => {
+    //   state.Alldata = state.Alldata.filter(
+    //     (data) => data.id !== action.payload
+    //   );
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAlldata.fulfilled, (state, action) => {
@@ -104,9 +111,14 @@ const DataSlice = createSlice({
     builder.addCase(updateStatus.rejected, (state, action) => {
       console.error("❌ Failed to update status:", action.payload);
     });
+    builder.addCase(deleteId.fulfilled, (state, action) => {
+      state.Alldata = state.Alldata.filter(
+        (data) => data.id !== action.payload
+      );
+    });
   },
 });
 
 export const Alldata = (state) => state.AllData?.Alldata;
-export const { deleteId } = DataSlice.actions;
+// export const { deleteId } = DataSlice.actions;
 export default DataSlice.reducer;

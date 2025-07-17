@@ -107,6 +107,7 @@ export default function BookAppointment() {
         date,
         service,
         email,
+        status,
       })
     );
 

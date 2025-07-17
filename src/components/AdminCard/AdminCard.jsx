@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useDispatch, useSelector } from "react-redux";
 import { Alldata, fetchAlldata, updateStatus } from "../../Store/DataSlice";
 
-function AdminCard({ name, email, date, time, status, id }) {
+function AdminCard({ name, email, date, time, status, id, service }) {
   const [value, setValue] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isRejecting, setIsRejecting] = useState(false);
@@ -88,7 +88,7 @@ function AdminCard({ name, email, date, time, status, id }) {
 
       <div className="border-t-2 border-gray-200 py-4">
         <span className="text-bold text-lg">Services:</span>
-        <h2>Haircut</h2>
+        <h2>{service}</h2>
       </div>
       {status === "pending" && (
         <div className="buttons flex items-center gap-6 w-full">

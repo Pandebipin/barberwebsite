@@ -6,8 +6,13 @@ import {
   FaRegCheckCircle,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { data, fetchdata, UpdateStatus } from "../../Store/UserdataSlice";
-import { Alldata, deleteId, fetchAlldata } from "../../Store/DataSlice";
+import {
+  data,
+  deletestat,
+  fetchdata,
+  UpdateStatus,
+} from "../../Store/UserdataSlice";
+import { Alldata, fetchAlldata } from "../../Store/DataSlice";
 
 const statusColors = {
   Complete: "text-green-500",
@@ -22,19 +27,19 @@ const DashboardData = () => {
   }, [dispatch]);
   const userData = useSelector(data);
   const alldata = useSelector(Alldata);
-  console.log(alldata);
+  // console.log(alldata);
 
   const handleDelete = (id) => {
     // console.log("triggered", id);
-    dispatch(deleteId(id));
+    dispatch(deletestat(id));
   };
 
   const updateStatuschange = async (id) => {
-    console.log(id);
     await dispatch(UpdateStatus({ id, newStatus: "Complete" }));
   };
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
+      {/* <AnimatedScissor/> */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-md">
           <thead>
@@ -76,15 +81,15 @@ const DashboardData = () => {
                     <div className="flex space-x-3">
                       <FaCheckCircle
                         onClick={() => {
-                          console.log(booking.id);
+                          // console.log(booking.id);
                           updateStatuschange(booking.id);
                         }}
                         className="text-blue-500 cursor-pointer hover:text-blue-700"
                       />
                       <FaTrash
                         onClick={() => {
-                          // console.log(booking.docId);
-                          handleDelete(booking.docId);
+                          // console.log(booking.id);
+                          handleDelete(booking.id);
                         }}
                         className="text-red-500 cursor-pointer hover:text-red-700"
                       />

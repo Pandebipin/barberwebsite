@@ -13,12 +13,7 @@ const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const BlogsinglePost = lazy(() =>
   import("./components/BlogsinglePost/BlogsinglePost.jsx")
 );
-// const AppointmentFirst = lazy(() =>
-//   import("./components/Appointment-firstsec/AppointmentFirst.jsx")
-// );
-// const AppointmentSecond = lazy(() =>
-//   import("./components/Appointment-secondSec/Appointment-second.jsx")
-// );
+
 const AdminDashboard = lazy(() =>
   import("./pages/AdminDashboard/AdminDashboard.jsx")
 );

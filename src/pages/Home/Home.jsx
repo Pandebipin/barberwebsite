@@ -171,7 +171,6 @@ function Home() {
       <div className="addblog lg:pt-6">
         {/* <Addblog /> */}
         <BlogPost />
-        <AdminDashboard />
       </div>
 
       <div className="gallery">

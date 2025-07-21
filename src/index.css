@@ -20,3 +20,17 @@
     margin-top: 4rem;
   }
 }
+/* svg {
+  animation: scissorMove 1.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes scissorMove {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+} */

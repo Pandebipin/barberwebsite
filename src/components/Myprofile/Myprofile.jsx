@@ -14,7 +14,6 @@ function Myprofile() {
   }, [dispatch]);
   const Alldata = useSelector(data);
   const isAuth = useSelector((state) => state.isAuth.isAuth);
-  console.log(isAuth);
 
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -23,8 +22,8 @@ function Myprofile() {
   const userAppointments = Alldata.filter(
     (item) => item.email === currentEmail
   );
-  console.log(userAppointments.length);
-  console.log(Alldata);
+  // console.log(userAppointments.length);
+  // console.log(Alldata);
   return (
     <div className="w-full min-h-screen bg-gray-900 text-gray-100 p-4 flex items-center justify-center">
       {isAuth ? (

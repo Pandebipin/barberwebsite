@@ -102,7 +102,7 @@ function Myprofile() {
             </div>
           ) : (
             <div>
-              {userAppointments.length >= 0 ? (
+              {userAppointments.length > 0 ? (
                 userAppointments.map((elem, index) => (
                   <div
                     key={index}

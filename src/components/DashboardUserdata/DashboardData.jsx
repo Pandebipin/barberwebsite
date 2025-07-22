@@ -13,6 +13,7 @@ import {
   UpdateStatus,
 } from "../../Store/UserdataSlice";
 import { Alldata, fetchAlldata } from "../../Store/DataSlice";
+import Userdata from "../Userdata/Userdata";
 
 const statusColors = {
   Complete: "text-green-500",
@@ -27,7 +28,8 @@ const DashboardData = () => {
   }, [dispatch]);
   const userData = useSelector(data);
   const alldata = useSelector(Alldata);
-  // console.log(alldata);
+  console.log(alldata);
+  console.log(userData);
 
   const handleDelete = (id) => {
     // console.log("triggered", id);
@@ -52,8 +54,16 @@ const DashboardData = () => {
             </tr>
           </thead>
           <tbody>
-            {alldata.filter((elem) => elem.status != "pending") &&
-              userData.map((booking, index) => (
+            {userData
+              .filter((elem) => {
+                const match = alldata.find(
+                  (booking) => elem.name === booking.name
+                );
+                // match = "true"
+                //bool = "false"
+                return match?.status === "approved";
+              })
+              .map((booking, index) => (
                 <tr
                   key={index}
                   className="border-t hover:bg-gray-50 transition-colors"

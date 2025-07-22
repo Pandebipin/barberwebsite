@@ -20,6 +20,7 @@ function AdminDashboard() {
   }, [dispatch]);
 
   const data = useSelector(Alldata);
+  console.log(data);
   const date = new Date();
   const currentMonth = date.getMonth();
   const currentYear = date.getYear();
@@ -138,21 +139,23 @@ function AdminDashboard() {
           </div>
         </div>
         {state == 0 && (
-          <div className="hidden grid-cols-1 md:grid-cols-2 gap-6">
-            {data?.map((elem) => {
-              return (
-                <AdminCard
-                  key={elem.id}
-                  name={elem.name}
-                  time={elem.timeSlot}
-                  date={elem.date}
-                  email={elem.email}
-                  status={elem.status}
-                  id={elem.docId}
-                  service={elem.service}
-                />
-              );
-            })}
+          <div className=" grid-cols-1 md:grid-cols-2 gap-6">
+            {data
+              ?.filter((elem) => elem.status === "pending")
+              .map((elem) => {
+                return (
+                  <AdminCard
+                    key={elem.id}
+                    name={elem.name}
+                    time={elem.timeSlot}
+                    date={elem.date}
+                    email={elem.email}
+                    status={elem.status}
+                    id={elem.docId}
+                    service={elem.service}
+                  />
+                );
+              })}
           </div>
         )}
         {state === 1 && (

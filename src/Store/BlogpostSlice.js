@@ -28,14 +28,14 @@ export const fetchblogs = createAsyncThunk("blogdata/fetchblogs", async () => {
 
 export const AddBlog = createAsyncThunk("blog/AddBlog", async (data) => {
   const { imgfile, title, desc } = data;
-  console.log(title);
+  // console.log(title);
 
   try {
     const storage = getStorage();
     const firestoreref = getFirestore();
     const storageref = ref(storage, `images/${imgfile.name}`);
     await uploadBytes(storageref, imgfile);
-    console.log("uploaded");
+    // console.log("uploaded");
 
     const imgUrl = await getDownloadURL(storageref);
     const docref = await addDoc(collection(firestoreref, "blogdata"), {
@@ -63,7 +63,7 @@ const BlogpostSlice = createSlice({
         state.blog = action.payload;
       })
       .addCase(AddBlog.fulfilled, (state, action) => {
-        console.log("Blog added:", action.payload);
+        // console.log("Blog added:", action.payload);
         state.blog.push(action.payload);
       })
       .addCase(AddBlog.rejected, (state, action) => {

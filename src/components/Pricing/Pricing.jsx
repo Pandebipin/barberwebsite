@@ -7,7 +7,7 @@ const Pricing = () => {
     <section className=" dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold  dark:text-white">
+          <h2 className="mb-4 text-4xl tracking-tight text-gray-500 font-extrabold ">
             Choose Your Perfect Hair Plan
           </h2>
           <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
@@ -16,13 +16,17 @@ const Pricing = () => {
           </p>
         </div>
         <div className="space-y-8 lg:grid lg:grid-cols-2 sm:gap-6 lg:space-y-0">
-          <div className="flex flex-col p-6 mx-auto max-w-lg text-center  bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-            <h3 className="mb-4 text-2xl font-semibold">Basic cut</h3>
+          <div className="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border border-gray-400 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-500">
+              Basic cut
+            </h3>
             <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
               Perfect for a quick and clean haircut
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">Rs.150</span>
+              <span className="mr-2 text-5xl text-gray-500 font-extrabold">
+                Rs.150
+              </span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -39,7 +43,7 @@ const Pricing = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Professional Haircut</span>
+                <span className="text-gray-500">Professional Haircut</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -54,7 +58,7 @@ const Pricing = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Quick servises</span>
+                <span className="text-gray-500">Quick servises</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -70,7 +74,7 @@ const Pricing = () => {
                   ></path>
                 </svg>
                 <span>
-                  <span className="font-semibold">
+                  <span className="text-gray-500 font-semibold">
                     Include trimming and styling{" "}
                   </span>
                 </span>
@@ -79,20 +83,24 @@ const Pricing = () => {
             <Link to={"/appointment"}>
               <a
                 href="#"
-                className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white"
+                className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Book now
               </a>
             </Link>
           </div>
 
-          <div className="flex flex-col p-6 mx-auto max-w-lg text-center  bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-            <h3 className="mb-4 text-2xl font-semibold">Premium Haircut</h3>
+          <div className="flex flex-col p-6 mx-auto max-w-lg text-center   rounded-lg border border-gray-400 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800">
+            <h3 className="mb-4 text-2xl font-semibold text-gray-500">
+              Premium Haircut
+            </h3>
             <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
               stylish and customized haircuts.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">Rs.500</span>
+              <span className="mr-2 text-5xl font-extrabold text-gray-500">
+                Rs.500
+              </span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -109,7 +117,9 @@ const Pricing = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Customized haircut & styling</span>
+                <span className="text-gray-500">
+                  Customized haircut & styling
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -124,7 +134,7 @@ const Pricing = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Beard trimming & shaping</span>
+                <span className="text-gray-500">Beard trimming & shaping</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -140,14 +150,16 @@ const Pricing = () => {
                   ></path>
                 </svg>
                 <span>
-                  <span className="font-semibold">Hair wash & conditioner</span>
+                  <span className="font-semibold text-gray-500">
+                    Hair wash & conditioner
+                  </span>
                 </span>
               </li>
             </ul>
             <Link to={`/appointmentcalendar/cuts1`}>
               <a
                 href="#"
-                className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
+                className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:focus:ring-primary-900"
               >
                 Book now
               </a>

@@ -8,6 +8,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { CheckAuth } from "./Store/AuthSlice";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,7 +29,20 @@ function App() {
 
   const CurrentEmail = user?.email;
 
-  if (loading) return <p className="text-white text-center mt-4">Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <DotLottieReact
+          src="https://lottie.host/e18e37a5-9212-472c-bf16-ed179bd9ab58/tKckBztGL4.lottie"
+          loop
+          autoplay
+          style={{ width: "60%", height: "60%" }}
+        />
+        <span className="text-xl font-sans text-center">
+          Barbershop vibes incoming…"
+        </span>
+      </div>
+    );
 
   const UserLayout = () => (
     <div>

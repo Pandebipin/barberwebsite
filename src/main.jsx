@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./Store/store.js";
 import Signup from "./pages/Signup/Signup.jsx";
 import Login from "./pages/Login/Login.jsx";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const BlogsinglePost = lazy(() =>
@@ -83,6 +84,22 @@ const router = createBrowserRouter([
         path: "/Admindashboard",
         element: <AdminDashboard />,
       },
+      {
+        path: "*",
+        element: (
+          <div className="flex flex-col mt-0  w-full h-screen justify-center items-center">
+            <DotLottieReact
+              src="https://lottie.host/e18e37a5-9212-472c-bf16-ed179bd9ab58/tKckBztGL4.lottie"
+              loop
+              autoplay
+              style={{ width: "60%", height: "60%" }}
+            />
+            <span className="text-xl text-white font-sans">
+              Oops! That route doesn’t exist!
+            </span>
+          </div>
+        ),
+      },
     ],
   },
 ]);
@@ -94,8 +111,13 @@ createRoot(document.getElementById("root")).render(
       <PersistGate loading={null} persistor={persistor}>
         <Suspense
           fallback={
-            <div className="flex justify-center items-center text-2xl text-red-400">
-              Loading...
+            <div className="flex justify-center items-center ">
+              <DotLottieReact
+                src="https://lottie.host/e18e37a5-9212-472c-bf16-ed179bd9ab58/tKckBztGL4.lottie"
+                loop
+                autoplay
+                style={{ width: "60%", height: "160%" }}
+              />
             </div>
           }
         >

@@ -34,12 +34,14 @@ const Header = () => {
     <>
       <header>
         <nav className="flex items-center justify-between gap-2 py-4 px-4 md:px-8">
-          <div className="logo">
+          <div
+            className="logo flex items-center gap-2 cursor-pointer"
+            onClick={WayToHome}
+          >
             <img
-              onClick={WayToHome}
-              className="w-[80px] md:w-[120px] h-[70px] object-contain text-white cursor-pointer"
+              className="w-[80px] md:w-[120px] h-[70px] object-contain text-white"
               src="https://marketplace.canva.com/EAGGacYcM1I/1/0/1600w/canva-vintage-ornament-barbershop-logo-CeBhjirpIjM.jpg"
-              alt=""
+              alt="Barber Logo"
             />
           </div>
 

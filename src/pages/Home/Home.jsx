@@ -10,6 +10,8 @@ import Gallery from "../../components/Gallery/Gallery";
 import Modal from "../../components/Model-offer/Modal";
 import { Link } from "react-router-dom";
 import { Box, Modal as Modal2 } from "@mui/material";
+import RedeemCard from "../../components/Redeem-Card/RedeemCard";
+import MembershipTiers from "../../components/Membership-Tiers/MembershipTiers";
 
 function Home() {
   const [open, setOpen] = useState(false);
@@ -154,7 +156,7 @@ function Home() {
       <div className="slider">
         <Slider />
       </div>
-      <div className="about py-5 mt-4">
+      <div className="about px-4 flex flex-col justify-between gap-4 py-5 mt-4">
         <About />
       </div>
 

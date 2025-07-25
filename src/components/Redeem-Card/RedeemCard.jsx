@@ -6,7 +6,7 @@ function RedeemCard({ service, feature, reedemAmt, icon }) {
   return (
     <div className="group md:w-[310px] bg-[#251E18] p-4 rounded-lg hover:-translate-y-2 border border-transparent hover:border-yellow-500 hover:shadow-[0_0_15px_rgba(255,255,0,0.3)] transition-all duration-300 ease-in-out">
       <div className="flex w-full justify-between items-center pb-3">
-        <div className="p-2 rounded-full group-hover:bg-yellow-500/20 transition duration-300">
+        <div className="p-2 rounded-full bg-yellow-600/20 group-hover:bg-yellow-500/20 transition duration-300">
           {icon}
         </div>{" "}
         <span className="bg-[#CC4619] text-sm px-2 rounded-lg">Service</span>

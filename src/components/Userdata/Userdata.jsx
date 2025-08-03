@@ -10,7 +10,7 @@ function Userdata() {
   useEffect(() => {
     dispatch(fetchdata());
   }, [dispatch]);
-  console.log(data1);
+  // console.log(data1);
 
   return (
     <div className="w-full h-screen">
@@ -18,18 +18,20 @@ function Userdata() {
         See Available Cutting Users
       </h1>
       {data1.length > 0 ? (
-        data1.map((elem) => (
-          <div
-            key={elem.id}
-            className="flex justify-center items-center w-full h-auto py-2 md:gap-8"
-          >
-            <h1 className="text-white px-2 md:text-lg items-center capitalize">
-              {elem.name}
-            </h1>
-            <span className="text-white md:p-2">{elem.timeSlot}</span>
-            <span className="text-white md:p-2">{elem.service}</span>
-          </div>
-        ))
+        data1
+          .filter((elem) => elem.status !== "Complete")
+          .map((elem) => (
+            <div
+              key={elem.id}
+              className="flex justify-center items-center w-full h-auto py-2 md:gap-8"
+            >
+              <h1 className="text-white px-2 md:text-lg items-center capitalize">
+                {elem.name}
+              </h1>
+              <span className="text-white md:p-2">{elem.timeSlot}</span>
+              <span className="text-white md:p-2">{elem.service}</span>
+            </div>
+          ))
       ) : (
         <p className="text-xl text-white text-center capitalize py-4 mt-6">
           No Users found

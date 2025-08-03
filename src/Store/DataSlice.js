@@ -94,7 +94,7 @@ const DataSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchAlldata.fulfilled, (state, action) => {
       state.Alldata = action.payload;
-      // console.log("fetched", action.payload);
+      console.log("fetched", action.payload);
     });
     builder.addCase(AddAlldata.fulfilled, (state, action) => {
       state.Alldata.push(action.payload);
@@ -103,7 +103,6 @@ const DataSlice = createSlice({
     builder.addCase(updateStatus.fulfilled, (state, action) => {
       const { id, newStatus } = action.payload;
       const index = state.Alldata.findIndex((item) => item.docId === id);
-      console.log(index);
       if (index !== -1) {
         state.Alldata[index].status = newStatus;
       }

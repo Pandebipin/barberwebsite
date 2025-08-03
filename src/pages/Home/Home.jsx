@@ -168,11 +168,6 @@ function Home() {
         <Tesimonial />
       </div>
 
-      <div className="addblog lg:pt-6">
-        {/* <Addblog /> */}
-        <BlogPost />
-      </div>
-
       <div className="gallery">
         <Gallery />
       </div>

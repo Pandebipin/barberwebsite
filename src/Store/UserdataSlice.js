@@ -27,37 +27,31 @@ export const fetchdata = createAsyncThunk("fetchdata/Userdata", async () => {
   }
 });
 
-export const addData = createAsyncThunk("data/adddata", async (data) => {
-  const { name, email, phone, timeSlot, date, service, status } = data;
-  try {
-    const firestoreref = getFirestore();
-    // console.log("adding data", data);
+export const addData = createAsyncThunk(
+  "data/adddata",
+  async (data, { rejectWithValue }) => {
+    try {
+      const firestoreref = getFirestore();
 
-    const docref = await addDoc(collection(firestoreref, "userdata"), {
-      name,
-      phone,
-      timeSlot,
-      date,
-      service,
-      email,
-      status,
-    });
-    // console.log("data added", data);
+      const docref = await addDoc(collection(firestoreref, "userdata"), {
+        name: data.name,
+        phone: data.phone,
+        timeSlot: data.timeSlot,
+        date: data.date,
+        service: data.service,
+        email: data.email,
+        status: data.status,
+      });
 
-    return {
-      id: docref.id,
-      name,
-      phone,
-      timeSlot,
-      date,
-      service,
-      email,
-      status,
-    };
-  } catch (error) {
-    throw error;
+      return {
+        id: docref.id,
+        ...data,
+      };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const UpdateStatus = createAsyncThunk(
   "data/updateStatus",
@@ -90,13 +84,16 @@ const UserdataSlice = createSlice({
         // console.log("Fetched data:", action.payload);
         state.data = action.payload;
       })
+      .addCase(addData.rejected, (state, action) => {
+        // console.log("error", action.payload);
+      })
       .addCase(addData.fulfilled, (state, action) => {
         // console.log("data added:", action.payload);
         state.data.push(action.payload);
       })
       .addCase(UpdateStatus.fulfilled, (state, action) => {
         const { id, newStatus } = action.payload;
-        console.log("updated", id, newStatus);
+        // console.log("updated", id, newStatus);
         const data1 = state.data.find((elem) => elem.id === id);
         if (data1) {
           data1.status = newStatus;

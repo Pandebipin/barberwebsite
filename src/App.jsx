@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { CheckAuth } from "./Store/AuthSlice";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Login from "./pages/Login/Login";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,7 +48,7 @@ function App() {
   const UserLayout = () => (
     <div>
       <Header />
-      {user ? <Outlet /> : <Signup />}
+      <Outlet />
       <Footer />
     </div>
   );

@@ -28,8 +28,6 @@ const DashboardData = () => {
   }, [dispatch]);
   const userData = useSelector(data);
   const alldata = useSelector(Alldata);
-  console.log(alldata);
-  console.log(userData);
 
   const handleDelete = (id) => {
     // console.log("triggered", id);

@@ -12,10 +12,16 @@ import {
   Typography,
 } from "@mui/material";
 import BookingConfirmation from "./BookingConfirm/BookingConfirmation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddAlldata } from "../Store/DataSlice";
-import { addData } from "../Store/UserdataSlice";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  AddrewardsPoints,
+  fetchRewardData,
+  rewardData,
+} from "../Store/RewardSlice";
+import { addData } from "../Store/UserdataSlice";
+import { span } from "framer-motion/client";
 
 const timeSlots = [
   "9:00 AM",
@@ -55,6 +61,13 @@ export default function BookAppointment() {
   const [notes, setNotes] = useState("");
   const [isComplete, setIsComplete] = useState(false);
   const [status, Setstatus] = useState("pending");
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+  const [showEarned, setShowEarned] = useState(false);
+  const [promoCode, setPromocode] = useState(0);
+  const [showInput, setShowInput] = useState(false);
+  const [activeRewardIndex, setActiveRewardIndex] = useState(null);
+
   const dispatch = useDispatch();
   const handleNext = () => {
     if (step === 1 && (!date || !timeSlot)) {
@@ -70,6 +83,7 @@ export default function BookAppointment() {
 
   const auth = getAuth();
   useEffect(() => {
+    dispatch(fetchRewardData());
     const data = onAuthStateChanged(auth, (user) => {
       if (user) {
         setEmail(user.email);
@@ -78,14 +92,41 @@ export default function BookAppointment() {
     return () => data();
   }, []);
 
+  const data = useSelector(rewardData);
+  const matchedId = data
+    .filter((elem) => elem.auth === email)
+    .map((elem) => elem.docId);
+
   var handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !phone) {
       alert("Please fill out all contact fields.");
       return;
     }
+    const isReferralValid = data.find(
+      (elem) => Number(elem.ReferralCode) === Number(code)
+    );
+    if (email) {
+      dispatch(AddrewardsPoints({ newPoints: 50, userId: matchedId[0] }));
+    }
+    // console.log(isReferralValid);
+    if (isReferralValid) {
+      if (email) {
+        dispatch(AddrewardsPoints({ newPoints: 100, userId: matchedId[0] }));
+      }
+      console.log("Referral code matched!");
+      if (isReferralValid.docId) {
+        dispatch(
+          AddrewardsPoints({ newPoints: 200, userId: isReferralValid.docId })
+        );
 
-    // console.log(auth);
+        // console.log(isReferralValid.docId);
+      }
+    } else {
+      setError("Invalid referral code");
+      return;
+    }
+
     dispatch(
       AddAlldata({
         id: Date.now(),
@@ -101,12 +142,14 @@ export default function BookAppointment() {
     );
     dispatch(
       addData({
-        name,
-        phone,
-        timeSlot,
+        id: Date.now(),
         date,
+        timeSlot,
         service,
+        name,
         email,
+        phone,
+        notes,
         status,
       })
     );
@@ -122,10 +165,15 @@ export default function BookAppointment() {
     setName("");
     setEmail("");
     setPhone("");
-    setNotes("");
+    setCode("");
     setIsComplete(false);
   };
-
+  const handleClick = () => {
+    const promocode = Math.floor(Math.random() * 9000) + 1000;
+    setShowInput;
+    setPromocode(promocode);
+    console.log(promoCode);
+  };
   if (isComplete) {
     return (
       <div>
@@ -215,19 +263,90 @@ export default function BookAppointment() {
           />
           <TextField label="Email" type="email" value={email} fullWidth />
           <TextField
-            label="Phone"
+            label="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             fullWidth
           />
           <TextField
-            label="Notes (Optional)"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            label="voucher num"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
             fullWidth
-            multiline
-            rows={3}
           />
+          <span className="text-sm text-red-600 ">{error}</span>
+          <div
+            onClick={() => setShowEarned(!showEarned)}
+            className="w-full p-4 rounded-xl cursor-pointer bg-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out"
+          >
+            <p className="font-semibold text-lg">
+              Click to view earned rewards
+            </p>
+
+            <div
+              className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                showEarned ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              {data
+                .filter((elem) => elem.auth === email)
+                .flatMap((elem, index) => {
+                  const rewards = [
+                    {
+                      earned: elem.isRewardEarned,
+                      label: "🔒 Private VIP Tool Access",
+                    },
+                    {
+                      earned: elem.isRewardEarned2,
+                      label: "🎁 Bonus Gift Pack",
+                    },
+                    {
+                      earned: elem.isRewardEarned3,
+                      label: "👑 Crown Membership",
+                    },
+                  ];
+
+                  return rewards.map((reward, i) => {
+                    const rewardKey = `${index}-${i}`;
+                    // console.log(rewardKey);
+                    return (
+                      reward.earned && (
+                        <div key={rewardKey} className="flex flex-col gap-2">
+                          <div
+                            className="flex items-center justify-between mt-2 px-5 py-3 rounded-md shadow-md bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 ease-in-out"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveRewardIndex(rewardKey);
+                            }}
+                          >
+                            <h1 className="text-gray-800 text-base font-medium tracking-wide">
+                              {reward.label}
+                            </h1>
+                            <span
+                              onClick={handleClick}
+                              className="text-sm font-semibold text-red-600 bg-red-100 px-3 py-1 rounded-full hover:bg-red-200 transition duration-200"
+                            >
+                              Use
+                            </span>
+                          </div>
+
+                          {activeRewardIndex === rewardKey && (
+                            <TextField
+                              onClick={(e) => e.stopPropagation()}
+                              label="Promo Code"
+                              // value={promoCode}
+                              value={""}
+                              onChange={(e) => setPromocode(e.target.value)}
+                              fullWidth
+                            />
+                          )}
+                        </div>
+                      )
+                    );
+                  });
+                })}
+            </div>
+          </div>
         </>
       )}
 

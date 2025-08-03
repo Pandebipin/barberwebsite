@@ -4,6 +4,7 @@ import { auth } from "../../Firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { CheckAuth } from "../../Store/AuthSlice";
 import { useDispatch } from "react-redux";
+import { AddRewardData } from "../../Store/RewardSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ function Login() {
         setisAuthenticate(true);
         console.log("before dispatching");
         dispatch(CheckAuth(true));
+
         navigate("/");
       });
     } catch (error) {

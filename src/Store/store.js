@@ -6,6 +6,7 @@ import BlogpostSlice from "./BlogpostSlice";
 import UserdataSlice from "./UserdataSlice";
 import DataSlice from "./DataSlice";
 import AuthSliceReducer from "./AuthSlice";
+import RewardSlice from "./RewardSlice";
 const persistConfig = {
   key: "root",
   storage,
@@ -19,6 +20,7 @@ const store = configureStore({
     data: UserdataSlice,
     AllData: DataSlice,
     isAuth: AuthSliceReducer,
+    RewardData: RewardSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

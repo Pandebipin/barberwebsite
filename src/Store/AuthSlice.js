@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuth: false,
+  email: "",
 };
 
 const AuthSlice = createSlice({
@@ -9,9 +10,9 @@ const AuthSlice = createSlice({
   initialState,
   reducers: {
     CheckAuth: (state, action) => {
-      // console.log("auth", action.payload);
       state.isAuth = action.payload;
     },
+
     Logout: (state, action) => {
       state.isAuth = false;
     },

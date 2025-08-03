@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase";
+import { useDispatch } from "react-redux";
+import { AddRewardData } from "../../Store/RewardSlice";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -11,6 +13,7 @@ function Signup() {
   const [error2, seterror2] = useState("");
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -27,13 +30,21 @@ function Signup() {
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // navigate("/login");
+      dispatch(
+        AddRewardData({
+          points: 50,
+          auth: email,
+          ReferralCode: 0,
+          isRewardEarned: false,
+          stage: "",
+        })
+      );
+      console.log("email", email);
       navigate("/");
     } catch (error) {
       seterror(error.message);
     }
   };
-
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

@@ -288,63 +288,73 @@ export default function BookAppointment() {
                 showEarned ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              {data
-                .filter((elem) => elem.auth === email)
-                .flatMap((elem, index) => {
-                  const rewards = [
-                    {
-                      earned: elem.isRewardEarned,
-                      label: "🔒 Private VIP Tool Access",
-                    },
-                    {
-                      earned: elem.isRewardEarned2,
-                      label: "🎁 Bonus Gift Pack",
-                    },
-                    {
-                      earned: elem.isRewardEarned3,
-                      label: "👑 Crown Membership",
-                    },
-                  ];
-
-                  return rewards.map((reward, i) => {
-                    const rewardKey = `${index}-${i}`;
-                    // console.log(rewardKey);
-                    return (
-                      reward.earned && (
-                        <div key={rewardKey} className="flex flex-col gap-2">
-                          <div
-                            className="flex items-center justify-between mt-2 px-5 py-3 rounded-md shadow-md bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 ease-in-out"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveRewardIndex(rewardKey);
-                            }}
-                          >
-                            <h1 className="text-gray-800 text-base font-medium tracking-wide">
-                              {reward.label}
-                            </h1>
-                            <span
-                              onClick={handleClick}
-                              className="text-sm font-semibold text-red-600 bg-red-100 px-3 py-1 rounded-full hover:bg-red-200 transition duration-200"
-                            >
-                              Use
-                            </span>
-                          </div>
-
-                          {activeRewardIndex === rewardKey && (
-                            <TextField
-                              onClick={(e) => e.stopPropagation()}
-                              label="Promo Code"
-                              // value={promoCode}
-                              value={""}
-                              onChange={(e) => setPromocode(e.target.value)}
-                              fullWidth
-                            />
-                          )}
-                        </div>
+              {(() => {
+                const earnedRewards = data
+                  .filter((elem) => elem.auth === email)
+                  .flatMap((elem, index) => {
+                    const rewards = [
+                      {
+                        earned: elem.isRewardEarned,
+                        label: "🔒 Private VIP Tool Access",
+                      },
+                      {
+                        earned: elem.isRewardEarned2,
+                        label: "🎁 Bonus Gift Pack",
+                      },
+                      {
+                        earned: elem.isRewardEarned3,
+                        label: "👑 Crown Membership",
+                      },
+                    ];
+                    return rewards
+                      .map((reward, i) =>
+                        reward.earned
+                          ? { ...reward, key: `${index}-${i}` }
+                          : null
                       )
-                    );
+                      .filter(Boolean);
                   });
-                })}
+
+                if (earnedRewards.length === 0) {
+                  return (
+                    <div className="text-center text-gray-500 font-medium mt-4">
+                      No rewards available.
+                    </div>
+                  );
+                }
+
+                return earnedRewards.map((reward) => (
+                  <div key={reward.key} className="flex flex-col gap-2">
+                    <div
+                      className="flex items-center justify-between mt-2 px-5 py-3 rounded-md shadow-md bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 ease-in-out"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveRewardIndex(reward.key);
+                      }}
+                    >
+                      <h1 className="text-gray-800 text-base font-medium tracking-wide">
+                        {reward.label}
+                      </h1>
+                      <span
+                        onClick={handleClick}
+                        className="text-sm font-semibold text-red-600 bg-red-100 px-3 py-1 rounded-full hover:bg-red-200 transition duration-200"
+                      >
+                        Use
+                      </span>
+                    </div>
+
+                    {activeRewardIndex === reward.key && (
+                      <TextField
+                        onClick={(e) => e.stopPropagation()}
+                        label="Promo Code"
+                        value={promocode}
+                        onChange={(e) => setPromocode(e.target.value)}
+                        fullWidth
+                      />
+                    )}
+                  </div>
+                ));
+              })()}
             </div>
           </div>
         </>
